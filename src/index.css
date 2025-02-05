@@ -1,0 +1,120 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: #0f172a;
+  color: #ffffff;
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(0, 240, 255, 0.15), transparent 50%),
+    radial-gradient(circle at 85% 30%, rgba(255, 0, 51, 0.1), transparent 50%),
+    linear-gradient(180deg, #0f172a 0%, #1a1a2e 100%);
+  background-attachment: fixed;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Code Rain Animation */
+@keyframes codeRain {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+}
+
+.code-rain {
+  position: absolute;
+  top: 64px;
+  left: 0;
+  right: 0;
+  height: 400px;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.code-rain span {
+  position: absolute;
+  font-family: monospace;
+  font-size: 14px;
+  color: rgba(0, 240, 255, 0.15);
+  text-shadow: 0 0 8px rgba(0, 240, 255, 0.3);
+  animation: codeRain 3s linear infinite;
+}
+
+/* Logo Glitch Effect */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.logo-glitch {
+  position: relative;
+  display: inline-block;
+}
+
+.logo-glitch::before,
+.logo-glitch::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: inherit;
+  background-size: inherit;
+  background-position: inherit;
+  background-repeat: inherit;
+}
+
+.logo-glitch::before {
+  animation: glitch-channel-1 3s steps(1) infinite;
+  clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+  opacity: 0.75;
+  transform: translate(-2px);
+}
+
+.logo-glitch::after {
+  animation: glitch-channel-2 3s steps(1) infinite reverse;
+  clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%);
+  opacity: 0.75;
+  transform: translate(2px);
+}
+
+@keyframes glitch-channel-1 {
+  0% { opacity: 0.75; }
+  5% { transform: translate(-2px, 1px); }
+  10% { transform: none; opacity: 0.75; }
+  15% { transform: none; opacity: 0.75; }
+  20% { transform: translate(1px, -1px); }
+  25% { transform: none; opacity: 0.75; }
+  100% { transform: none; opacity: 0.75; }
+}
+
+@keyframes glitch-channel-2 {
+  0% { opacity: 0.75; }
+  15% { transform: translate(2px, -1px); }
+  20% { transform: none; opacity: 0.75; }
+  25% { transform: none; opacity: 0.75; }
+  35% { transform: translate(-1px, 1px); }
+  40% { transform: none; opacity: 0.75; }
+  100% { transform: none; opacity: 0.75; }
+}
+
+@layer base {
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+    scroll-behavior: smooth;
+  }
+}
