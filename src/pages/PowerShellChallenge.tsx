@@ -118,7 +118,7 @@ function PowerShellChallenge() {
       </nav>
 
       {/* Banner Image */}
-      <div className="w-full h-32 relative overflow-hidden">
+      <div className="w-full h-24 relative overflow-hidden">
         <img
           src="/powershell-banner.jpg"
           alt="PowerShell Challenge Banner"
