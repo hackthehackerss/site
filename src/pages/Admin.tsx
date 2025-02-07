@@ -27,13 +27,16 @@ function Admin() {
   const [onlineUsers, setOnlineUsers] = useState<User[]>([]);
 
   useEffect(() => {
+    // Wait for auth to finish loading
     if (authLoading) return;
 
+    // Check if user is admin
     if (!profile || profile.email.toLowerCase() !== 'hackthehackres@gmail.com') {
       navigate('/');
       return;
     }
 
+    // Load users
     const loadUsers = async () => {
       try {
         const querySnapshot = await getDocs(collection(db, 'profiles'));
@@ -41,9 +44,7 @@ function Admin() {
           id: doc.id,
           ...doc.data()
         })) as User[];
-        
-        console.log('Fetched users:', usersData); // Debug log
-        
+
         setUsers(usersData);
         setOnlineUsers(usersData.filter(user => user.isOnline));
         setLoading(false);
@@ -55,6 +56,7 @@ function Admin() {
 
     loadUsers();
 
+    // Real-time listener for user changes
     const unsubscribeUsers = onSnapshot(
       collection(db, 'profiles'),
       (snapshot) => {
@@ -62,9 +64,7 @@ function Admin() {
           id: doc.id,
           ...doc.data()
         })) as User[];
-        
-        console.log('Real-time users update:', usersData); // Debug log
-        
+
         setUsers(usersData);
         setOnlineUsers(usersData.filter(user => user.isOnline));
       },
@@ -115,6 +115,7 @@ function Admin() {
 
   return (
     <div className="min-h-screen bg-background text-white">
+      {/* Navigation */}
       <nav className="bg-primary-dark border-b border-primary-blue/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16 items-center">
@@ -130,6 +131,7 @@ function Admin() {
       </nav>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Tabs */}
         <div className="flex space-x-4 mb-8">
           <button
             onClick={() => setActiveTab('users')}
@@ -158,6 +160,7 @@ function Admin() {
           </button>
         </div>
 
+        {/* Search Bar */}
         {activeTab === 'users' && (
           <div className="mb-6">
             <div className="relative">
@@ -173,6 +176,7 @@ function Admin() {
           </div>
         )}
 
+        {/* Content */}
         {loading ? (
           <div className="flex items-center justify-center py-12">
             <RefreshCw className="w-8 h-8 text-primary-blue animate-spin" />
@@ -237,7 +241,7 @@ function Admin() {
                               </button>
                               <button
                                 onClick={() => handleDeleteUser(user.id)}
-                                className="px-3 py-1 rounded-md bg-red-500/10 text-red-500 hover:bg-red-500/20"
+                                className="px-3 py-1 rounded-md bg-gray-500/10 text-gray-500 hover:bg-gray-500/20"
                               >
                                 <Trash2 className="w-4 h-4" />
                               </button>
@@ -246,7 +250,7 @@ function Admin() {
                         ))
                       ) : (
                         <tr>
-                          <td colSpan={5} className="px-6 py-8 text-center text-gray-400">
+                          <td colSpan={5} className="px-6 py-4 text-center text-gray-500">
                             No users found
                           </td>
                         </tr>
@@ -258,26 +262,32 @@ function Admin() {
             )}
 
             {activeTab === 'online' && (
-              <div className="bg-primary-dark/30 rounded-lg border border-primary-blue/20 p-6">
-                <div className="grid gap-4">
-                  {onlineUsers.length > 0 ? (
-                    onlineUsers.map((user) => (
-                      <div
-                        key={user.id}
-                        className="flex items-center justify-between p-4 bg-background rounded-lg border border-primary-blue/20"
-                      >
-                        <div className="flex items-center">
-                          <div className="text-sm font-medium">{user.fullName}</div>
-                          <div className="ml-2 text-xs text-gray-400">@{user.username}</div>
-                        </div>
-                        <div className="flex items-center space-x-4">
-                          <span className="text-sm text-green-500">Online now</span>
-                        </div>
-                      </div>
-                    ))
-                  ) : (
-                    <div className="text-center text-gray-400">No online users</div>
-                  )}
+              <div className="bg-primary-dark/30 rounded-lg border border-primary-blue/20">
+                <div className="overflow-x-auto">
+                  <table className="w-full">
+                    <thead>
+                      <tr className="border-b border-primary-blue/20">
+                        <th className="px-6 py-3 text-left">User</th>
+                        <th className="px-6 py-3 text-left">Last Seen</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {onlineUsers.length > 0 ? (
+                        onlineUsers.map((user) => (
+                          <tr key={user.id} className="border-b border-primary-blue/10">
+                            <td className="px-6 py-4">{user.fullName}</td>
+                            <td className="px-6 py-4">{user.lastSeen || 'N/A'}</td>
+                          </tr>
+                        ))
+                      ) : (
+                        <tr>
+                          <td colSpan={2} className="px-6 py-4 text-center text-gray-500">
+                            No users online
+                          </td>
+                        </tr>
+                      )}
+                    </tbody>
+                  </table>
                 </div>
               </div>
             )}
