@@ -19,6 +19,8 @@ import Leaderboard from './pages/Leaderboard';
 import TermsOfUse from './pages/TermsOfUse';
 import ContactUs from './pages/ContactUs';
 import { AuthProvider } from './contexts/AuthContext';
+import MinerOnTheRun from './pages/MinerOnTheRun';
+
 
 function App() {
   return (
@@ -35,6 +37,7 @@ function App() {
           <Route path="/cyber-threat-intelligence" element={<CyberThreatIntelligence />} />
           <Route path="/challenges" element={<Challenges />} />
           <Route path="/challenges/powershell-logs" element={<PowerShellChallenge />} />
+          <Route path="/challenges/miner-on-the-run" element={<MinerOnTheRun />} /> 
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/profile" element={<Profile />} />
