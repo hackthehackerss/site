@@ -130,226 +130,108 @@ function Home() {
       </div>
 
       {/* Learning Paths Preview */}
-      <div className="py-24" id="learning-paths">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold mb-12 text-center reveal">
-            <span className="text-primary-blue">Learning</span> Paths
-          </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                title: "Cybersecurity Fundamentals",
-                description: "Master the essential concepts and foundations of cybersecurity.",
-                modules: 15,
-                hours: 30,
-                path: "/cybersecurity-fundamentals",
-                free: true
-              },
-              {
-                title: "SOC Analyst",
-                description: "Master Security Operations Center processes and tools.",
-                modules: 12,
-                hours: 24,
-                path: "/soc-analyst",
-                free: false
-              },
-              {
-                title: "Incident Response",
-                description: "Master incident handling and response procedures.",
-                modules: 8,
-                hours: 16,
-                path: "/incident-response",
-                free: false
-              },
-              {
-                title: "Threat Hunting",
-                description: "Advanced techniques for proactive threat detection.",
-                modules: 10,
-                hours: 20,
-                path: "/threat-hunting",
-                free: false
-              },
-              {
-                title: "Malware Analysis",
-                description: "Learn to analyze and understand malicious software.",
-                modules: 14,
-                hours: 28,
-                path: "/malware-analysis",
-                free: false
-              },
-              {
-                title: "Cyber Threat Intelligence",
-                description: "Master the art of threat intelligence analysis and implementation.",
-                modules: 8,
-                hours: 16,
-                path: "/cyber-threat-intelligence",
-                free: false
-              }
-            ].map((path, index) => (
-              <Link 
-                key={index} 
-                to={path.free || profile?.subscription ? path.path : '#pricing'}
-                className="bg-primary-dark/30 rounded-lg p-6 border border-primary-blue/20 hover:border-primary-blue transition reveal group"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                <Book className="w-8 h-8 text-primary-blue mb-4" />
-                <div className="flex items-start justify-between mb-2">
-                  <h3 className="text-xl font-semibold">{path.title}</h3>
-                  {path.free && (
-                    <span className="bg-primary-blue/20 text-primary-blue text-xs px-2 py-1 rounded-full">
-                      Free
-                    </span>
-                  )}
-                </div>
-                <p className="text-gray-400 mb-4">{path.description}</p>
-                <div className="flex justify-between text-sm text-gray-400">
-                  <span>{path.modules} Modules</span>
-                  <span>{path.hours} Hours</span>
-                </div>
-                {!path.free && !profile?.subscription && (
-                  <div className="mt-4 pt-4 border-t border-primary-blue/20 text-center">
-                    <span className="text-primary-blue text-sm">
-                      Subscribe to unlock this path
-                    </span>
-                  </div>
-                )}
-              </Link>
-            ))}
+<div className="py-24" id="learning-paths">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 className="text-3xl font-bold mb-12 text-center reveal">
+      <span className="text-primary-blue">Learning</span> Paths
+    </h2>
+    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {[
+        {
+          title: "Cybersecurity Fundamentals",
+          description: "Master the essential concepts and foundations of cybersecurity.",
+          modules: 15,
+          hours: 30,
+          path: "/cybersecurity-fundamentals",
+          free: true,
+          image: "/images/cybersecurity-fundamentals.jpg"
+        },
+        {
+          title: "SOC Analyst",
+          description: "Master Security Operations Center processes and tools.",
+          modules: 12,
+          hours: 24,
+          path: "/soc-analyst",
+          free: false,
+          image: "/images/soc-analyst.jpg"
+        },
+        {
+          title: "Incident Response",
+          description: "Master incident handling and response procedures.",
+          modules: 8,
+          hours: 16,
+          path: "/incident-response",
+          free: false,
+          image: "/images/incident-response.jpg"
+        },
+        {
+          title: "Threat Hunting",
+          description: "Advanced techniques for proactive threat detection.",
+          modules: 10,
+          hours: 20,
+          path: "/threat-hunting",
+          free: false,
+          image: "/images/threat-hunting.jpg"
+        },
+        {
+          title: "Malware Analysis",
+          description: "Learn to analyze and understand malicious software.",
+          modules: 14,
+          hours: 28,
+          path: "/malware-analysis",
+          free: false,
+          image: "/images/malware-analysis.jpg"
+        },
+        {
+          title: "Cyber Threat Intelligence",
+          description: "Master the art of threat intelligence analysis and implementation.",
+          modules: 8,
+          hours: 16,
+          path: "/cyber-threat-intelligence",
+          free: false,
+          image: "/images/cyber-threat-intelligence.jpg"
+        }
+      ].map((path, index) => (
+        <Link 
+          key={index} 
+          to={path.free || profile?.subscription ? path.path : '#pricing'}
+          className="bg-primary-dark/30 rounded-lg p-6 border border-primary-blue/20 hover:border-primary-blue transition reveal group"
+          style={{ animationDelay: `${index * 100}ms` }}
+        >
+          {/* Learning Path Image */}
+          <img 
+            src={path.image} 
+            alt={path.title} 
+            className="w-full h-40 object-cover rounded-t-lg mb-4" 
+          />
+          
+          <Book className="w-8 h-8 text-primary-blue mb-4" />
+          <div className="flex items-start justify-between mb-2">
+            <h3 className="text-xl font-semibold">{path.title}</h3>
+            {path.free && (
+              <span className="bg-primary-blue/20 text-primary-blue text-xs px-2 py-1 rounded-full">
+                Free
+              </span>
+            )}
           </div>
-        </div>
-      </div>
+          <p className="text-gray-400 mb-4">{path.description}</p>
+          <div className="flex justify-between text-sm text-gray-400">
+            <span>{path.modules} Modules</span>
+            <span>{path.hours} Hours</span>
+          </div>
+          {!path.free && !profile?.subscription && (
+            <div className="mt-4 pt-4 border-t border-primary-blue/20 text-center">
+              <span className="text-primary-blue text-sm">
+                Subscribe to unlock this path
+              </span>
+            </div>
+          )}
+        </Link>
+      ))}
+    </div>
+  </div>
+</div>
 
-      {/* Pricing Section */}
-      {!profile?.subscription && (
-        <div className="bg-primary-dark/50 py-24" id="pricing">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold mb-12 text-center reveal">
-              <span className="text-primary-red">Subscription</span> Plans
-            </h2>
-            <div className="flex justify-center items-center mb-8 reveal">
-              <span className="text-gray-400">Monthly</span>
-              <button 
-                onClick={() => setBillingCycle(prev => prev === 'monthly' ? 'annual' : 'monthly')}
-                className="mx-4 relative inline-flex h-6 w-11 items-center rounded-full bg-primary-dark transition-colors focus:outline-none focus:ring-2 focus:ring-primary-blue focus:ring-offset-2"
-              >
-                <span
-                  className={`${
-                    billingCycle === 'annual' ? 'translate-x-6' : 'translate-x-1'
-                  } inline-block h-4 w-4 transform rounded-full bg-primary-blue transition`}
-                />
-              </button>
-              <span className="text-gray-400">Annual</span>
-            </div>
-            <div className="grid md:grid-cols-3 gap-8">
-              <div className="reveal-left bg-primary-dark/30 rounded-lg p-6 border border-primary-blue/20">
-                <h3 className="text-2xl font-bold mb-2">Basic</h3>
-                <p className="text-3xl font-bold mb-4">Free</p>
-                <ul className="space-y-4 mb-8">
-                  <li className="flex items-center">
-                    <CheckCircle2 className="w-5 h-5 text-primary-blue mr-2" />
-                    <span>Cybersecurity Fundamentals path</span>
-                  </li>
-                  <li className="flex items-center">
-                    <CheckCircle2 className="w-5 h-5 text-primary-blue mr-2" />
-                    <span>Basic challenges</span>
-                  </li>
-                  <li className="flex items-center">
-                    <CheckCircle2 className="w-5 h-5 text-primary-blue mr-2" />
-                    <span>Community access</span>
-                  </li>
-                </ul>
-                <Link
-                  to="/signup"
-                  className="block w-full text-center border border-primary-blue text-primary-blue py-3 rounded-md hover:bg-primary-blue hover:text-background transition"
-                >
-                  Get Started
-                </Link>
-              </div>
-              <div className="reveal bg-primary-dark rounded-lg p-6 border border-primary-blue/20">
-                <h3 className="text-2xl font-bold mb-2">Pro</h3>
-                <p className="text-3xl font-bold mb-2">
-                  {billingCycle === 'monthly' ? '$14' : '$10'}<span className="text-lg">/month</span>
-                </p>
-                {billingCycle === 'annual' && (
-                  <p className="text-sm text-primary-blue mb-4">Save $48/year with annual billing</p>
-                )}
-                <ul className="space-y-4 mb-8">
-                  <li className="flex items-center">
-                    <CheckCircle2 className="w-5 h-5 text-primary-blue mr-2" />
-                    <span>SOC Analyst path</span>
-                  </li>
-                  <li className="flex items-center">
-                    <CheckCircle2 className="w-5 h-5 text-primary-blue mr-2" />
-                    <span>Malware Analysis path</span>
-                  </li>
-                  <li className="flex items-center">
-                    <CheckCircle2 className="w-5 h-5 text-primary-blue mr-2" />
-                    <span>All challenges</span>
-                  </li>
-                  <li className="flex items-center">
-                    <CheckCircle2 className="w-5 h-5 text-primary-blue mr-2" />
-                    <span>Hands-on labs</span>
-                  </li>
-                  <li className="flex items-center">
-                    <CheckCircle2 className="w-5 h-5 text-primary-blue mr-2" />
-                    <span>Certificate of completion</span>
-                  </li>
-                </ul>
-                <Link
-                  to="/signup"
-                  className="block w-full text-center bg-primary-blue text-background py-3 rounded-md hover:bg-secondary-blue transition"
-                >
-                  Get Started
-                </Link>
-              </div>
-              <div className="reveal-right bg-primary-dark/30 rounded-lg p-6 border border-primary-blue/20 relative">
-                <div className="absolute -top-3 right-4 bg-primary-red text-white px-3 py-1 rounded-full text-sm font-semibold">
-                  Most Popular
-                </div>
-                <h3 className="text-2xl font-bold mb-2">Ultimate</h3>
-                <p className="text-3xl font-bold mb-2">
-                  {billingCycle === 'monthly' ? '$24' : '$20'}<span className="text-lg">/month</span>
-                </p>
-                {billingCycle === 'annual' && (
-                  <p className="text-sm text-primary-blue mb-4">Save $48/year with annual billing</p>
-                )}
-                <ul className="space-y-4 mb-8">
-                  <li className="flex items-center">
-                    <CheckCircle2 className="w-5 h-5 text-primary-blue mr-2" />
-                    <span>All learning paths</span>
-                  </li>
-                  <li className="flex items-center">
-                    <CheckCircle2 className="w-5 h-5 text-primary-blue mr-2" />
-                    <span>All challenges</span>
-                  </li>
-                  <li className="flex items-center">
-                    <CheckCircle2 className="w-5 h-5 text-primary-blue mr-2" />
-                    <span>Hands-on labs</span>
-                  </li>
-                  <li className="flex items-center">
-                    <CheckCircle2 className="w-5 h-5 text-primary-blue mr-2" />
-                    <span>Certificate of completion</span>
-                  </li>
-                  <li className="flex items-center">
-                    <CheckCircle2 className="w-5 h-5 text-primary-blue mr-2" />
-                    <span>Priority support</span>
-                  </li>
-                  <li className="flex items-center">
-                    <CheckCircle2 className="w-5 h-5 text-primary-blue mr-2" />
-                    <span>Early access to new content</span>
-                  </li>
-                </ul>
-                <Link
-                  to="/signup"
-                  className="block w-full text-center border border-primary-blue text-primary-blue py-3 rounded-md hover:bg-primary-blue hover:text-background transition"
-                >
-                  Get Started
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
 
       {/* User Reviews Section */}
       <div className="py-24">
