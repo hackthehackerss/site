@@ -31,6 +31,9 @@ function SignIn() {
     } catch (error: any) {
       if (error.message === 'Invalid login credentials') {
         setErrors({ general: 'Invalid email or password' });
+      } else if (error.message === 'Account blocked') {
+        // Redirect to the BlockedPage if account is blocked
+        navigate('/blocked');
       } else {
         setErrors({ general: 'An error occurred. Please try again.' });
       }
