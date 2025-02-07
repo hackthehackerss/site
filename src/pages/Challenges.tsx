@@ -59,7 +59,7 @@ function Challenges() {
               Investigate an encrypted endpoint and uncover a hidden cryptocurrency mining operation.
             </p>
             <div className="flex justify-between text-sm">
-              <span className="text-primary-blue">12 Questions</span>
+              <span className="text-primary-blue">8 Questions</span>
               <span className="text-primary-red">600 Points</span>
             </div>
           </Link>
