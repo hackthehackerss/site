@@ -106,13 +106,13 @@ function CryptoMinerChallenge() {
       </nav>
 
       {/* Banner Image */}
-  <div className="flex justify-center">
-  <img
-    src="/cryptominer-banner.jpg"
-    alt="CryptoMiner Challenge Banner"
-    className="w-auto max-h-80 object-cover"
-  />
-</div>
+      <div className="flex justify-center">
+        <img
+          src="/cryptominer-banner.jpg"
+          alt="CryptoMiner Challenge Banner"
+          className="w-auto max-h-80 object-cover"
+        />
+      </div>
 
       {/* Challenge Content */}
       <div className="max-w-4xl mx-auto px-4 py-12 -mt-16 relative z-10">
@@ -121,9 +121,13 @@ function CryptoMinerChallenge() {
         {/* Introduction */}
         <div className="bg-primary-dark/30 rounded-lg p-6 border border-primary-blue/20 mb-8">
           <h2 className="text-xl font-semibold mb-4">Challenge Introduction</h2>
-          <p className="text-gray-400 mb-6">
+          <p className="text-gray-400 mb-4">
             The SOC team received an alert about unusual high CPU usage on a workstation.
             Suspecting a cryptominer, they escalated the case for further investigation.
+          </p>
+          <p className="text-gray-300">
+            <span className="font-semibold text-white">Recommended Tool:</span> We suggest using 
+            <span className="font-bold text-white"> FTK Imager</span> to analyze the provided forensic image.
           </p>
         </div>
 
@@ -131,10 +135,10 @@ function CryptoMinerChallenge() {
         <div className="bg-primary-dark/30 rounded-lg p-6 border border-primary-blue/20 mb-8">
           <h2 className="text-xl font-semibold mb-4">Download Challenge File</h2>
           <a href="/Miner%20on%20the%20Run.ad1" download>
-  <button className="bg-blue-600 text-white py-3 px-6 rounded-lg shadow-lg hover:bg-blue-700 transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-    Download Miner on the Run.ad1
-  </button>
-</a>
+            <button className="bg-blue-600 text-white py-3 px-6 rounded-lg shadow-lg hover:bg-blue-700 transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+              Download Miner on the Run.ad1
+            </button>
+          </a>
         </div>
 
         {/* Questions */}
@@ -149,7 +153,7 @@ function CryptoMinerChallenge() {
                       type="text"
                       className="bg-background border border-primary-blue/20 rounded-md px-4 py-2 focus:outline-none focus:border-primary-blue"
                       placeholder="Enter your answer"
-                      onChange={(e) => handleAnswerSubmit(question.id, e.target.value)} // Fixed parentheses here
+                      onChange={(e) => handleAnswerSubmit(question.id, e.target.value)}
                     />
                     <button
                       className="text-gray-500 hover:text-gray-400"
