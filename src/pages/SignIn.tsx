@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { ArrowLeft, Loader2, Eye, EyeOff, AlertCircle } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
-import { getDoc, doc } from 'firebase/firestore';
-import { db } from '../firebase'; // assuming firebase is initialized
 
 interface FormErrors {
   email?: string;
@@ -28,29 +26,8 @@ function SignIn() {
     setErrors({});
 
     try {
-      // Attempt to sign in the user
       await signIn(formData.email, formData.password);
-
-      // Fetch user data from Firestore to check if the user is blocked
-      const userDoc = await getDoc(doc(db, 'profiles', formData.email)); // Assuming email is unique in the profiles collection
-
-      if (userDoc.exists()) {
-        const userData = userDoc.data();
-        
-        // Check if the user's account is blocked
-        if (userData.status === 'blocked') {
-          setErrors({ general: 'Your account has been blocked. Please contact support.' });
-          await signIn(formData.email, formData.password);  // log out the user immediately after the block message
-          navigate('/blocked');  // Redirect to blocked page
-          return;
-        }
-
-        // Proceed if the user is not blocked
-        console.log('Login successful!');
-        navigate('/learning-paths');  // Redirect to the learning paths or dashboard
-      } else {
-        setErrors({ general: 'No such user found!' });
-      }
+      navigate('/learning-paths');
     } catch (error: any) {
       if (error.message === 'Invalid login credentials') {
         setErrors({ general: 'Invalid email or password' });
