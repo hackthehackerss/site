@@ -38,9 +38,9 @@ function Challenges() {
             className="bg-primary-dark/30 rounded-lg p-6 border border-primary-blue/20 hover:border-primary-blue transition group"
           >
             <FileText className="w-8 h-8 text-primary-blue mb-4" />
-            <h3 className="text-xl font-semibold mb-2">PowerShell Logs Analysis</h3>
+            <h3 className="text-xl font-semibold mb-2">PowerShell Analysis Chellenge</h3>
             <p className="text-gray-400 mb-4">
-              Analyze PowerShell logs to identify potential security threats and malicious activities.
+              Analyze a suspicious PowerShell command and investigate its role in a system compromise
             </p>
             <div className="flex justify-between text-sm">
               <span className="text-primary-blue">5 Questions</span>
