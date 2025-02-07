@@ -48,6 +48,22 @@ function Challenges() {
             </div>
           </Link>
 
+          {/* CryptoMiner Investigation Challenge */}
+          <Link 
+            to="/challenges/miner-on-the-run"
+            className="bg-primary-dark/30 rounded-lg p-6 border border-primary-blue/20 hover:border-primary-blue transition group"
+          >
+            <FileText className="w-8 h-8 text-primary-blue mb-4" />
+            <h3 className="text-xl font-semibold mb-2">Miner On the Run</h3>
+            <p className="text-gray-400 mb-4">
+              Investigate an encrypted endpoint and uncover a hidden cryptocurrency mining operation.
+            </p>
+            <div className="flex justify-between text-sm">
+              <span className="text-primary-blue">12 Questions</span>
+              <span className="text-primary-red">600 Points</span>
+            </div>
+          </Link>
+
           {/* Coming Soon Placeholder */}
           <div className="bg-primary-dark/30 rounded-lg p-6 border border-primary-blue/20">
             <Construction className="w-8 h-8 text-gray-600 mb-4" />
