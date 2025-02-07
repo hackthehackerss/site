@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Users, Activity, Settings, Ban, Trash2, CheckCircle, Search, RefreshCw, Save, Edit2, X } from 'lucide-react';
+import { ArrowLeft, Users, Activity, Settings, Ban, Trash2, CheckCircle, Search, RefreshCw } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { collection, query, onSnapshot, doc, updateDoc, deleteDoc, getDocs } from 'firebase/firestore';
 import { db } from '../lib/firebase';
@@ -27,16 +27,13 @@ function Admin() {
   const [onlineUsers, setOnlineUsers] = useState<User[]>([]);
 
   useEffect(() => {
-    // Wait for auth to finish loading
     if (authLoading) return;
 
-    // Check if user is admin
     if (!profile || profile.email.toLowerCase() !== 'hackthehackres@gmail.com') {
       navigate('/');
       return;
     }
 
-    // Load users
     const loadUsers = async () => {
       try {
         const querySnapshot = await getDocs(collection(db, 'profiles'));
@@ -58,7 +55,6 @@ function Admin() {
 
     loadUsers();
 
-    // Set up real-time listener for user changes
     const unsubscribeUsers = onSnapshot(
       collection(db, 'profiles'),
       (snapshot) => {
@@ -109,7 +105,6 @@ function Admin() {
     user.fullName?.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  // Show loading state while auth is being checked
   if (authLoading) {
     return (
       <div className="min-h-screen bg-background text-white flex items-center justify-center">
@@ -120,7 +115,6 @@ function Admin() {
 
   return (
     <div className="min-h-screen bg-background text-white">
-      {/* Navigation */}
       <nav className="bg-primary-dark border-b border-primary-blue/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16 items-center">
@@ -136,7 +130,6 @@ function Admin() {
       </nav>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Tabs */}
         <div className="flex space-x-4 mb-8">
           <button
             onClick={() => setActiveTab('users')}
@@ -165,7 +158,6 @@ function Admin() {
           </button>
         </div>
 
-        {/* Search Bar */}
         {activeTab === 'users' && (
           <div className="mb-6">
             <div className="relative">
@@ -181,7 +173,6 @@ function Admin() {
           </div>
         )}
 
-        {/* Content */}
         {loading ? (
           <div className="flex items-center justify-center py-12">
             <RefreshCw className="w-8 h-8 text-primary-blue animate-spin" />
@@ -275,22 +266,17 @@ function Admin() {
                         key={user.id}
                         className="flex items-center justify-between p-4 bg-background rounded-lg border border-primary-blue/20"
                       >
-                        <div className="flex items-center space-x-4">
-                          <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                          <div>
-                            <div className="font-medium">{user.fullName}</div>
-                            <div className="text-sm text-gray-400">@{user.username}</div>
-                          </div>
+                        <div className="flex items-center">
+                          <div className="text-sm font-medium">{user.fullName}</div>
+                          <div className="ml-2 text-xs text-gray-400">@{user.username}</div>
                         </div>
-                        <div className="text-sm text-gray-400">
-                          Active now
+                        <div className="flex items-center space-x-4">
+                          <span className="text-sm text-green-500">Online now</span>
                         </div>
                       </div>
                     ))
                   ) : (
-                    <div className="text-center py-12 text-gray-400">
-                      No users currently online
-                    </div>
+                    <div className="text-center text-gray-400">No online users</div>
                   )}
                 </div>
               </div>
