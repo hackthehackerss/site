@@ -136,7 +136,7 @@ function CryptoMinerChallenge() {
           <h2 className="text-xl font-semibold mb-4">Download Challenge File</h2>
           <a href="/Miner%20on%20the%20Run.ad1" download>
             <button className="bg-blue-600 text-white py-3 px-6 rounded-lg shadow-lg hover:bg-blue-700 transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-              Download Miner on the Run.ad1
+              Download /Miner on the Run.ad1
             </button>
           </a>
         </div>
