@@ -183,72 +183,109 @@ function Admin() {
           </div>
         ) : (
           <div className="space-y-6">
-            {activeTab === 'online' && (
-  <div className="bg-primary-dark/30 rounded-lg border border-primary-blue/20">
-    <div className="overflow-x-auto">
-      <table className="w-full">
-        <thead>
-          <tr className="border-b border-primary-blue/20">
-            <th className="px-6 py-3 text-left">User</th>
-            <th className="px-6 py-3 text-left">Last Seen</th>
-          </tr>
-        </thead>
-        <tbody>
-          {onlineUsers.length > 0 ? (
-            onlineUsers.map((user) => (
-              <tr key={user.id} className="border-b border-primary-blue/10">
-                <td className="px-6 py-4">
-                  <div>
-                    <div className="font-medium">{user.fullName}</div>
-                    <div className="text-sm text-gray-400">@{user.username}</div>
-                  </div>
-                </td>
-                <td className="px-6 py-4">{user.lastSeen || 'N/A'}</td>
-              </tr>
-            ))
-          ) : (
-            <tr>
-              <td colSpan={2} className="px-6 py-4 text-center text-gray-500">
-                No users online
-              </td>
-            </tr>
-          )}
-        </tbody>
-      </table>
-    </div>
-  </div>
-)}
-
-            {activeTab === 'online' && (
-              <div className="bg-primary-dark/30 rounded-lg border border-primary-blue/20">
-                <div className="overflow-x-auto">
-                  <table className="w-full">
-                    <thead>
-                      <tr className="border-b border-primary-blue/20">
-                        <th className="px-6 py-3 text-left">User</th>
-                        <th className="px-6 py-3 text-left">Last Seen</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {onlineUsers.length > 0 ? (
-                        onlineUsers.map((user) => (
-                          <tr key={user.id} className="border-b border-primary-blue/10">
-                            <td className="px-6 py-4">{user.fullName}</td>
-                            <td className="px-6 py-4">{user.lastSeen || 'N/A'}</td>
-                          </tr>
-                        ))
-                      ) : (
-                        <tr>
-                          <td colSpan={2} className="px-6 py-4 text-center text-gray-500">
-                            No users online
+            <div className="bg-primary-dark/30 rounded-lg border border-primary-blue/20">
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead>
+                    <tr className="border-b border-primary-blue/20">
+                      <th className="px-6 py-3 text-left">User</th>
+                      <th className="px-6 py-3 text-left">Email</th>
+                      <th className="px-6 py-3 text-left">Status</th>
+                      <th className="px-6 py-3 text-left">Last Seen</th>
+                      <th className="px-6 py-3 text-left">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {filteredUsers.length > 0 ? (
+                      filteredUsers.map((user) => (
+                        <tr key={user.id} className="border-b border-primary-blue/10">
+                          <td className="px-6 py-4">
+                            <div>
+                              <div className="font-medium">{user.fullName}</div>
+                              <div className="text-sm text-gray-400">@{user.username}</div>
+                            </div>
+                          </td>
+                          <td className="px-6 py-4">{user.email}</td>
+                          <td className="px-6 py-4">
+                            <span
+                              className={`px-3 py-1 rounded-full ${
+                                user.status === 'active' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+                              }`}
+                            >
+                              {user.status}
+                            </span>
+                          </td>
+                          <td className="px-6 py-4">{user.lastSeen || 'N/A'}</td>
+                          <td className="px-6 py-4 flex space-x-3">
+                            <button
+                              onClick={() => handleBlockUser(user.id, user.status)}
+                              className="text-sm text-yellow-500 hover:text-yellow-700"
+                            >
+                              {user.status === 'blocked' ? 'Unblock' : 'Block'}
+                            </button>
+                            <button
+                              onClick={() => handleDeleteUser(user.id)}
+                              className="text-sm text-red-500 hover:text-red-700"
+                            >
+                              <Trash2 className="w-4 h-4 inline" /> Delete
+                            </button>
                           </td>
                         </tr>
-                      )}
-                    </tbody>
-                  </table>
-                </div>
+                      ))
+                    ) : (
+                      <tr>
+                        <td colSpan={5} className="px-6 py-4 text-center text-gray-500">
+                          No users found
+                        </td>
+                      </tr>
+                    )}
+
+                    {onlineUsers.length > 0 && (
+                      <tr className="bg-primary-dark/20">
+                        <td colSpan={5} className="px-6 py-3 text-left text-xl text-primary-blue">
+                          Online Users
+                        </td>
+                      </tr>
+                    )}
+                    {onlineUsers.map((user) => (
+                      <tr key={user.id} className="border-b border-primary-blue/10 bg-primary-dark/5">
+                        <td className="px-6 py-4">
+                          <div>
+                            <div className="font-medium">{user.fullName}</div>
+                            <div className="text-sm text-gray-400">@{user.username}</div>
+                          </div>
+                        </td>
+                        <td className="px-6 py-4">{user.email}</td>
+                        <td className="px-6 py-4">
+                          <span
+                            className={`px-3 py-1 rounded-full ${
+                              user.status === 'active' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+                            }`}
+                          >
+                            {user.status}
+                          </span>
+                        </td>
+                        <td className="px-6 py-4">{user.lastSeen || 'N/A'}</td>
+                        <td className="px-6 py-4 flex space-x-3">
+                          <button
+                            onClick={() => handleBlockUser(user.id, user.status)}
+                            className="text-sm text-yellow-500 hover:text-yellow-700"
+                          >
+                            {user.status === 'blocked' ? 'Unblock' : 'Block'}
+                          </button>
+                          <button
+                            onClick={() => handleDeleteUser(user.id)}
+                            className="text-sm text-red-500 hover:text-red-700"
+                          >
+                            <Trash2 className="w-4 h-4 inline" /> Delete
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
-            )}
+            </div>
           </div>
         )}
       </div>
