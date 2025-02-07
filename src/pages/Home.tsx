@@ -76,7 +76,7 @@ function Home() {
               <img 
                 src="/logo-full.png" 
                 alt="HackTheHackers Full Logo" 
-                className="h-32 mx-auto mb-8 animate-float"
+                className="h-64 mx-auto mb-8 animate-float"
               />
             </div>
             <h1 className="text-5xl font-bold mb-4 reveal-scale">
