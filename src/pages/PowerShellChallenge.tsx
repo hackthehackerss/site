@@ -1,66 +1,78 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, CheckCircle2, XCircle } from 'lucide-react';
+import { ArrowLeft, CheckCircle2, XCircle, HelpCircle } from 'lucide-react';
 
 interface Question {
   id: number;
   text: string;
   answer: string;
+  hint?: string; // Optional hint for each question
   userAnswer?: string;
   isCorrect?: boolean;
+  showHint?: boolean; // State to toggle hint visibility
 }
 
 function PowerShellChallenge() {
   const [questions, setQuestions] = useState<Question[]>([
     {
       id: 1,
-      text: "What encoding method does the script use?",
-      answer: "Base64"
+      text: "1. What encoding method does the script use?",
+      answer: "Base64",
+      hint: "Look for a common encoding technique often used for obfuscation."
     },
     {
       id: 2,
-      text: "What is the URL from which the malicious file is downloaded?",
-      answer: "http://uhxqin.biz/csgeaivqpodqs/5849b1b61e88f7461064b986a204b9c7_wannacry.exe"
+      text: "2. What is the URL from which the malicious file is downloaded?",
+      answer: "http://uhxqin.biz/csgeaivqpodqs/5849b1b61e88f7461064b986a204b9c7_wannacry.exe",
+      hint: "The URL is part of the PowerShell command, check for the full string."
     },
     {
       id: 3,
-      text: "What is the hash of the downloaded malware file?",
-      answer: "5849b1b61e88f7461064b986a204b9c7"
+      text: "3. What is the hash of the downloaded malware file?",
+      answer: "5849b1b61e88f7461064b986a204b9c7",
+      hint: "The hash is often a part of the file’s metadata, check the script for it."
     },
     {
       id: 4,
-      text: "What type of malware is being delivered by this script?",
-      answer: "Ransomware"
+      text: "4. What type of malware is being delivered by this script?",
+      answer: "Ransomware",
+      hint: "Consider the impact of the encryption process mentioned in the introduction."
     },
     {
       id: 5,
-      text: "What is the name of the downloaded file?",
-      answer: "update_service.exe"
+      text: "5. What is the name of the downloaded file?",
+      answer: "update_service.exe",
+      hint: "The file name is mentioned in the PowerShell command."
     },
     {
       id: 6,
-      text: "Which PowerShell command is used to download the file?",
-      answer: "Invoke-WebRequest -Uri $update -OutFile $destinationPath"
+      text: "6. Which PowerShell command is used to download the file?",
+      answer: "Invoke-WebRequest -Uri $update -OutFile $destinationPath",
+      hint: "Search for the download command within the script."
     },
     {
       id: 7,
-      text: "Where is the file stored on the system before execution?",
-      answer: "TEMP"
+      text: "7. Where is the file stored on the system before execution?",
+      answer: "TEMP",
+      hint: "Check the file path in the command for where the file is stored."
     },
     {
       id: 8,
-      text: "Which command is used to execute the downloaded file?",
-      answer: "Start-Process -FilePath $destinationPath -WindowStyle Hidden"
+      text: "8. Which command is used to execute the downloaded file?",
+      answer: "Start-Process -FilePath $destinationPath -WindowStyle Hidden",
+      hint: "Look for a command that runs an executable file in the script."
     },
     {
       id: 9,
-      text: "Which method does the script use to maintain persistence?",
-      answer: "Startup folder"
+      text: "9. Which method does the script use to maintain persistence?",
+      answer: "Startup folder",
+      hint: "Persistence is often achieved by placing the file in a location that runs on startup."
     },
     {
       id: 10,
-      text: "Which Windows registry key is modified to establish persistence?",
-      answer: "HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Run"
+      text: "10. Which Windows registry key is modified to establish persistence?",
+      answer: "HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Run",
+      hint: "Persistence is often achieved through Windows registry keys."
     }
   ]);
 
@@ -71,6 +83,18 @@ function PowerShellChallenge() {
           ...q,
           userAnswer: answer.toLowerCase(),
           isCorrect: answer.toLowerCase() === q.answer.toLowerCase()
+        };
+      }
+      return q;
+    }));
+  };
+
+  const toggleHint = (id: number) => {
+    setQuestions(questions.map((q) => {
+      if (q.id === id) {
+        return {
+          ...q,
+          showHint: !q.showHint // Toggle hint visibility
         };
       }
       return q;
@@ -138,6 +162,12 @@ function PowerShellChallenge() {
                       placeholder="Enter your answer"
                       onChange={(e) => handleAnswerSubmit(question.id, e.target.value)} // Fixed parentheses here
                     />
+                    <button 
+                      className="text-gray-500 hover:text-gray-400"
+                      onClick={() => toggleHint(question.id)}
+                    >
+                      <HelpCircle className="w-5 h-5" />
+                    </button>
                     {question.userAnswer && (
                       question.isCorrect ? (
                         <CheckCircle2 className="w-6 h-6 text-green-500" />
@@ -146,6 +176,9 @@ function PowerShellChallenge() {
                       )
                     )}
                   </div>
+                  {question.showHint && (
+                    <div className="mt-4 text-gray-300 italic">{question.hint}</div>
+                  )}
                 </div>
               </div>
             </div>
