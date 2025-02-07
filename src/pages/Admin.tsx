@@ -183,83 +183,41 @@ function Admin() {
           </div>
         ) : (
           <div className="space-y-6">
-            {activeTab === 'users' && (
-              <div className="bg-primary-dark/30 rounded-lg border border-primary-blue/20">
-                <div className="overflow-x-auto">
-                  <table className="w-full">
-                    <thead>
-                      <tr className="border-b border-primary-blue/20">
-                        <th className="px-6 py-3 text-left">User</th>
-                        <th className="px-6 py-3 text-left">Email</th>
-                        <th className="px-6 py-3 text-left">Status</th>
-                        <th className="px-6 py-3 text-left">Last Seen</th>
-                        <th className="px-6 py-3 text-right">Actions</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {filteredUsers.length > 0 ? (
-                        filteredUsers.map((user) => (
-                          <tr key={user.id} className="border-b border-primary-blue/10">
-                            <td className="px-6 py-4">
-                              <div>
-                                <div className="font-medium">{user.fullName}</div>
-                                <div className="text-sm text-gray-400">@{user.username}</div>
-                              </div>
-                            </td>
-                            <td className="px-6 py-4">{user.email}</td>
-                            <td className="px-6 py-4">
-                              <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                                user.status === 'active'
-                                  ? 'bg-green-500/10 text-green-500'
-                                  : 'bg-red-500/10 text-red-500'
-                              }`}>
-                                {user.status === 'active' ? (
-                                  <CheckCircle className="w-4 h-4 mr-1" />
-                                ) : (
-                                  <Ban className="w-4 h-4 mr-1" />
-                                )}
-                                {user.status}
-                              </span>
-                            </td>
-                            <td className="px-6 py-4">
-                              {user.isOnline ? (
-                                <span className="text-green-500">Online now</span>
-                              ) : (
-                                user.lastSeen || 'Never'
-                              )}
-                            </td>
-                            <td className="px-6 py-4 text-right space-x-2">
-                              <button
-                                onClick={() => handleBlockUser(user.id, user.status)}
-                                className={`px-3 py-1 rounded-md ${
-                                  user.status === 'active'
-                                    ? 'bg-red-500/10 text-red-500 hover:bg-red-500/20'
-                                    : 'bg-green-500/10 text-green-500 hover:bg-green-500/20'
-                                }`}
-                              >
-                                {user.status === 'active' ? 'Block' : 'Unblock'}
-                              </button>
-                              <button
-                                onClick={() => handleDeleteUser(user.id)}
-                                className="px-3 py-1 rounded-md bg-gray-500/10 text-gray-500 hover:bg-gray-500/20"
-                              >
-                                <Trash2 className="w-4 h-4" />
-                              </button>
-                            </td>
-                          </tr>
-                        ))
-                      ) : (
-                        <tr>
-                          <td colSpan={5} className="px-6 py-4 text-center text-gray-500">
-                            No users found
-                          </td>
-                        </tr>
-                      )}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            )}
+            {activeTab === 'online' && (
+  <div className="bg-primary-dark/30 rounded-lg border border-primary-blue/20">
+    <div className="overflow-x-auto">
+      <table className="w-full">
+        <thead>
+          <tr className="border-b border-primary-blue/20">
+            <th className="px-6 py-3 text-left">User</th>
+            <th className="px-6 py-3 text-left">Last Seen</th>
+          </tr>
+        </thead>
+        <tbody>
+          {onlineUsers.length > 0 ? (
+            onlineUsers.map((user) => (
+              <tr key={user.id} className="border-b border-primary-blue/10">
+                <td className="px-6 py-4">
+                  <div>
+                    <div className="font-medium">{user.fullName}</div>
+                    <div className="text-sm text-gray-400">@{user.username}</div>
+                  </div>
+                </td>
+                <td className="px-6 py-4">{user.lastSeen || 'N/A'}</td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan={2} className="px-6 py-4 text-center text-gray-500">
+                No users online
+              </td>
+            </tr>
+          )}
+        </tbody>
+      </table>
+    </div>
+  </div>
+)}
 
             {activeTab === 'online' && (
               <div className="bg-primary-dark/30 rounded-lg border border-primary-blue/20">
