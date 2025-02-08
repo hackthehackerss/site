@@ -195,7 +195,7 @@ function Home() {
       ].map((path, index) => (
         <Link 
           key={index} 
-          to={path.free || profile?.subscription ? path.path : '#pricing'}
+          to={path.free || profile?.subscription ? path.path : '/Pricing'}
           className="bg-primary-dark/30 rounded-lg p-6 border border-primary-blue/20 hover:border-primary-blue transition reveal group"
           style={{ animationDelay: `${index * 100}ms` }}
         >
