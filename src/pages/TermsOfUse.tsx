@@ -3,26 +3,44 @@ import { ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 function TermsOfUse() {
-  return (
-    <div className="min-h-screen bg-background text-white">
-      {/* Navigation */}
-      <nav className="bg-primary-dark border-b border-primary-blue/20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16 items-center">
-            <div className="flex items-center space-x-4">
-              <Link to="/" className="text-primary-blue hover:text-primary-blue/80 flex items-center group">
-                <ArrowLeft className="w-5 h-5 mr-2 group-hover:-translate-x-1 transition-transform" />
-                Back to Home
-              </Link>
-              <span className="text-xl font-bold">
-                <span className="text-white">Hack</span>
-                <span className="text-primary-red">The</span>
-                <span className="text-white">Hackers</span>
-              </span>
+  <div className="min-h-screen bg-background text-white">
+    {/* Navigation */}
+    <nav className="bg-primary-dark border-b border-primary-blue/20 glass-effect">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between h-16 items-center">
+          <div className="flex items-center space-x-4">
+            <div className="logo-glitch">
+              <img 
+                src="/logo-shield.png" 
+                alt="HackTheHackers Logo" 
+                className="h-10 w-auto animate-float"
+              />
             </div>
+            <span className="text-xl font-bold">
+              <span className="text-white">Hack</span>
+              <span className="text-primary-red">The</span>
+              <span className="text-white">Hackers</span>
+            </span>
+          </div>
+          <div className="hidden md:flex items-center space-x-8">
+            <Link to="/learning-paths" className="text-primary-blue hover:text-primary-blue/80">Learning Paths</Link>
+            <Link to="/challenges" className="text-primary-blue hover:text-primary-blue/80">Challenges</Link>
+            <Link to="/leaderboard" className="text-primary-blue hover:text-primary-blue/80">Leaderboard</Link>
+            <Link to="/Pricing" className="text-primary-blue hover:text-primary-blue/80">Plan & Pricing</Link>
+            {profile ? (
+              <UserProfileButton />
+            ) : (
+              <>
+                <Link to="/signin" className="text-primary-blue hover:text-primary-blue/80">Sign In</Link>
+                <Link to="/signup" className="bg-primary-red text-white px-4 py-2 rounded-md hover:bg-secondary-red transition">
+                  Get Started
+                </Link>
+              </>
+            )}
           </div>
         </div>
-      </nav>
+      </div>
+    </nav>
 
       <div className="max-w-4xl mx-auto px-4 py-12">
         <div className="prose prose-invert max-w-none">
