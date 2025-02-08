@@ -144,7 +144,7 @@ function Home() {
           hours: 30,
           path: "/cybersecurity-fundamentals",
           free: true,
-          image: "/cybersecurity-fundamentals.jpeg"
+          image: "/cybersecurity-fundamentals.png"
         },
         {
           title: "SOC Analyst",
@@ -153,7 +153,7 @@ function Home() {
           hours: 24,
           path: "/soc-analyst",
           free: false,
-          image: "/soc-analyst.jpeg"
+          image: "/soc-analyst.png"
         },
         {
           title: "Incident Response",
@@ -162,7 +162,7 @@ function Home() {
           hours: 16,
           path: "/incident-response",
           free: false,
-          image: "/incident-response.jpeg"
+          image: "/incident-response.png"
         },
         {
           title: "DFIR",
@@ -171,7 +171,7 @@ function Home() {
           hours: 20,
           path: "/threat-hunting",
           free: false,
-          image: "/DFIR.jpeg"
+          image: "/DFIR.png"
         },
         {
           title: "Malware Analysis",
@@ -180,7 +180,7 @@ function Home() {
           hours: 28,
           path: "/malware-analysis",
           free: false,
-          image: "/malware-analysis.jpeg"
+          image: "/malware-analysis.png"
         },
         {
           title: "Cyber Threat Intelligence",
@@ -189,7 +189,7 @@ function Home() {
           hours: 16,
           path: "/cyber-threat-intelligence",
           free: false,
-          image: "/cyber-threat-intelligence.jpeg"
+          image: "/cyber-threat-intelligence.png"
         }
       ].map((path, index) => (
         <Link 
