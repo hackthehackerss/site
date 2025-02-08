@@ -53,6 +53,7 @@ function Home() {
               <Link to="/learning-paths" className="text-primary-blue hover:text-primary-blue/80">Learning Paths</Link>
               <Link to="/challenges" className="text-primary-blue hover:text-primary-blue/80">Challenges</Link>
               <Link to="/leaderboard" className="text-primary-blue hover:text-primary-blue/80">Leaderboard</Link>
+              <Link to="/Pricing" className="text-primary-blue hover:text-primary-blue/80">Plan & Pricing</Link>
               {profile ? (
                 <UserProfileButton />
               ) : (
