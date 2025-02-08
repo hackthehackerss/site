@@ -144,7 +144,7 @@ function Home() {
           hours: 30,
           path: "/cybersecurity-fundamentals",
           free: true,
-          image: "/images/cybersecurity-fundamentals.jpg"
+          image: "/cybersecurity-fundamentals.jpeg"
         },
         {
           title: "SOC Analyst",
@@ -153,7 +153,7 @@ function Home() {
           hours: 24,
           path: "/soc-analyst",
           free: false,
-          image: "/images/soc-analyst.jpg"
+          image: "/soc-analyst.jpeg"
         },
         {
           title: "Incident Response",
@@ -162,16 +162,16 @@ function Home() {
           hours: 16,
           path: "/incident-response",
           free: false,
-          image: "/images/incident-response.jpg"
+          image: "/incident-response.jpeg"
         },
         {
-          title: "Threat Hunting",
-          description: "Advanced techniques for proactive threat detection.",
+          title: "DFIR",
+          description: "Digital Forensics And Incident Response",
           modules: 10,
           hours: 20,
           path: "/threat-hunting",
           free: false,
-          image: "/images/threat-hunting.jpg"
+          image: "/DFIR.jpeg"
         },
         {
           title: "Malware Analysis",
@@ -180,7 +180,7 @@ function Home() {
           hours: 28,
           path: "/malware-analysis",
           free: false,
-          image: "/images/malware-analysis.jpg"
+          image: "/malware-analysis.jpeg"
         },
         {
           title: "Cyber Threat Intelligence",
@@ -189,7 +189,7 @@ function Home() {
           hours: 16,
           path: "/cyber-threat-intelligence",
           free: false,
-          image: "/images/cyber-threat-intelligence.jpg"
+          image: "/cyber-threat-intelligence.jpeg"
         }
       ].map((path, index) => (
         <Link 
@@ -202,7 +202,7 @@ function Home() {
           <img 
             src={path.image} 
             alt={path.title} 
-            className="w-full h-40 object-cover rounded-t-lg mb-4" 
+            className="w-full h-30 object-cover rounded-t-lg mb-4" 
           />
           
           <Book className="w-8 h-8 text-primary-blue mb-4" />
