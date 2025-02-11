@@ -14,6 +14,63 @@ body {
   overflow-x: hidden;
 }
 
+/* Title Effects */
+.title-gradient {
+  background: linear-gradient(to right, #fff, #00f0ff, #fff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  background-size: 200% auto;
+  animation: shine 3s linear infinite;
+}
+
+.title-glow {
+  text-shadow: 0 0 10px rgba(0, 240, 255, 0.5),
+               0 0 20px rgba(0, 240, 255, 0.3),
+               0 0 30px rgba(0, 240, 255, 0.2);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.subtitle-gradient {
+  background: linear-gradient(to right, #ff0033, #00f0ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradientMove 3s ease infinite;
+}
+
+@keyframes shine {
+  to {
+    background-position: 200% center;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    text-shadow: 0 0 10px rgba(0, 240, 255, 0.5),
+                 0 0 20px rgba(0, 240, 255, 0.3),
+                 0 0 30px rgba(0, 240, 255, 0.2);
+  }
+  50% {
+    text-shadow: 0 0 15px rgba(0, 240, 255, 0.7),
+                 0 0 25px rgba(0, 240, 255, 0.5),
+                 0 0 35px rgba(0, 240, 255, 0.3);
+  }
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Existing styles... */
 /* Code Rain Animation */
 @keyframes codeRain {
   0% {
