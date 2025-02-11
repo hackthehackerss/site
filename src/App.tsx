@@ -18,9 +18,9 @@ import Admin from './pages/Admin';
 import Leaderboard from './pages/Leaderboard';
 import TermsOfUse from './pages/TermsOfUse';
 import ContactUs from './pages/ContactUs';
+import RedTeam from './pages/RedTeam';
 import { AuthProvider } from './contexts/AuthContext';
 import MinerOnTheRun from './pages/MinerOnTheRun';
-
 
 function App() {
   return (
@@ -46,6 +46,7 @@ function App() {
           <Route path="/leaderboard" element={<Leaderboard />} />
           <Route path="/terms" element={<TermsOfUse />} />
           <Route path="/contact" element={<ContactUs />} />
+          <Route path="/red-team" element={<RedTeam />} />
         </Routes>
       </Router>
     </AuthProvider>
