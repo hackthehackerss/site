@@ -66,7 +66,7 @@ function Home() {
           <img 
             src="/choose-path.png" 
             alt="Choose Your Path" 
-            className="w-96 h-auto animate-float"
+            className="w-120 h-auto animate-float"
           />
         </div>
 
@@ -128,103 +128,100 @@ function Home() {
         </div>
       </div>
 
-      {/* Pricing Section */}
-      <div className="py-24" id="pricing">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Choose Your Plan</h2>
-            <div className="flex justify-center items-center space-x-4">
-              <span className={`cursor-pointer ${billingCycle === 'monthly' ? 'text-primary-blue' : 'text-gray-400'}`}
-                    onClick={() => setBillingCycle('monthly')}>
-                Monthly
-              </span>
-              <div className={`w-16 h-8 rounded-full p-1 cursor-pointer ${
-                billingCycle === 'annual' ? 'bg-primary-blue' : 'bg-gray-600'
-              }`}
-                   onClick={() => setBillingCycle(billingCycle === 'monthly' ? 'annual' : 'monthly')}>
-                <div className={`w-6 h-6 rounded-full bg-white transform transition-transform ${
-                  billingCycle === 'annual' ? 'translate-x-8' : ''
-                }`} />
-              </div>
-              <span className={`cursor-pointer ${billingCycle === 'annual' ? 'text-primary-blue' : 'text-gray-400'}`}
-                    onClick={() => setBillingCycle('annual')}>
-                Annual (Save 20%)
+{/* Pricing Section */}
+<div className="py-24 bg-primary-dark" id="pricing">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="text-center mb-12">
+      <h2 className="text-4xl font-extrabold text-white mb-4">Choose Your Plan</h2>
+      <p className="text-lg text-gray-300 mb-8">
+        Select the plan that best suits your learning goals. The Basic plan is free, and the Pro plan includes full access to all courses and challenges.
+      </p>
+      <div className="flex justify-center items-center space-x-6">
+        <span 
+          className={`cursor-pointer text-lg font-semibold text-white ${billingCycle === 'monthly' ? 'text-primary-blue' : 'text-gray-400'}`}
+          onClick={() => setBillingCycle('monthly')}
+        >
+          Monthly
+        </span>
+        <div 
+          className={`w-20 h-10 rounded-full p-1 cursor-pointer transition-all duration-300 ease-in-out ${billingCycle === 'annual' ? 'bg-primary-blue' : 'bg-gray-600'}`}
+          onClick={() => setBillingCycle(billingCycle === 'monthly' ? 'annual' : 'monthly')}
+        >
+          <div 
+            className={`w-8 h-8 rounded-full bg-white transform transition-transform duration-300 ease-in-out ${billingCycle === 'annual' ? 'translate-x-10' : ''}`}
+          />
+        </div>
+        <span 
+          className={`cursor-pointer text-lg font-semibold text-white ${billingCycle === 'annual' ? 'text-primary-blue' : 'text-gray-400'}`}
+          onClick={() => setBillingCycle('annual')}
+        >
+          Annual (Save 20%)
+        </span>
+      </div>
+    </div>
+
+    <div className="grid md:grid-cols-2 gap-8">
+      {[ 
+        {
+          name: 'Basic',
+          price: 0,  // Free Plan
+          features: [
+            'Free Challenges',
+            'Cybersecurity Fundamentals'
+          ],
+          description: "Get started with the basics, explore foundational courses, and access a selection of free challenges."
+        },
+        {
+          name: 'Pro',
+          price: billingCycle === 'monthly' ? 24 : 20,  // Monthly $24, Annual $20/month (for annual billing)
+          popular: true,
+          features: [
+            'All Challenges',
+            'All Learning Paths',
+            'All Courses',
+            'Priority Support'
+          ],
+          description: "Unlock all content, including premium challenges, learning paths, and courses. Gain priority support to fast-track your progress."
+        }
+      ].map((plan, index) => (
+        <div
+          key={index}
+          className={`bg-primary-dark/30 rounded-lg p-8 border transition-all duration-300 ease-in-out ${
+            plan.popular 
+              ? 'border-primary-blue scale-105 shadow-lg shadow-primary-blue/20' 
+              : 'border-primary-blue/20 hover:border-primary-blue'
+          } hover:scale-105 relative`}
+        >
+          {plan.popular && (
+            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+              <span className="bg-primary-blue text-background px-4 py-1 rounded-full text-sm uppercase tracking-wide">
+                Recommended
               </span>
             </div>
+          )}
+          <h3 className="text-2xl font-semibold text-white mb-4">{plan.name}</h3>
+          <p className="text-sm text-gray-300 mb-4">{plan.description}</p>
+          <div className="mb-6 flex items-center space-x-2">
+            <span className="text-4xl font-extrabold text-primary-blue">${plan.price}</span>
+            <span className="text-gray-400">{billingCycle === 'monthly' ? 'per month' : 'annually'}</span>
           </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                name: 'Basic',
-                price: billingCycle === 'monthly' ? 29 : 279,
-                features: [
-                  'Access to Basic Courses',
-                  'Community Support',
-                  'Basic Labs',
-                  'Monthly Webinars'
-                ]
-              },
-              {
-                name: 'Pro',
-                price: billingCycle === 'monthly' ? 49 : 469,
-                popular: true,
-                features: [
-                  'All Basic Features',
-                  'Advanced Courses',
-                  'Premium Labs',
-                  'Priority Support',
-                  'Team Collaboration'
-                ]
-              },
-              {
-                name: 'Ultimate',
-                price: billingCycle === 'monthly' ? 99 : 949,
-                features: [
-                  'All Pro Features',
-                  'Custom Learning Path',
-                  '1-on-1 Mentoring',
-                  'Career Guidance',
-                  'Certificate Program'
-                ]
-              }
-            ].map((plan, index) => (
-              <div 
-                key={index}
-                className={`bg-primary-dark/30 rounded-lg p-8 border ${
-                  plan.popular 
-                    ? 'border-primary-blue scale-105 shadow-lg shadow-primary-blue/20' 
-                    : 'border-primary-blue/20'
-                } hover:border-primary-blue transition relative`}
-              >
-                {plan.popular && (
-                  <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                    <span className="bg-primary-blue text-background px-4 py-1 rounded-full text-sm">
-                      Most Popular
-                    </span>
-                  </div>
-                )}
-                <h3 className="text-2xl font-bold mb-4">{plan.name}</h3>
-                <div className="mb-6">
-                  <span className="text-4xl font-bold">${plan.price}</span>
-                  <span className="text-gray-400">/{billingCycle === 'monthly' ? 'mo' : 'yr'}</span>
-                </div>
-                <ul className="space-y-4 mb-8">
-                  {plan.features.map((feature, i) => (
-                    <li key={i} className="flex items-center">
-                      <CheckCircle2 className="w-5 h-5 text-primary-blue mr-2" />
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                <button className="w-full bg-primary-blue text-background py-2 rounded-md hover:bg-secondary-blue transition">
-                  Get Started
-                </button>
-              </div>
+          <ul className="space-y-4 mb-8 text-gray-300">
+            {plan.features.map((feature, i) => (
+              <li key={i} className="flex items-center text-sm">
+                <CheckCircle2 className="w-5 h-5 text-primary-blue mr-2" />
+                <span>{feature}</span>
+              </li>
             ))}
-          </div>
+          </ul>
+          <button className="w-full bg-primary-blue text-background py-3 rounded-md hover:bg-secondary-blue transition duration-200 ease-in-out">
+            Get Started
+          </button>
         </div>
-      </div>
+      ))}
+    </div>
+  </div>
+</div>
+
 
       {/* User Reviews Section */}
       <div className="py-24">
