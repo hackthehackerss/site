@@ -148,13 +148,19 @@ function LearningPaths() {
         </div>
       </nav>
 
-      {/* Header with animated gradient */}
-      <div className="bg-primary-dark/50 py-12 glass-effect">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center animate-fadeIn">
+      {/* Header with image on the left */}
+      <div className="relative bg-primary-dark py-12 glass-effect">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center">
+          <div className="flex-shrink-0">
+            <img 
+              src="/blue-team-page.png" 
+              alt="Blue Team Page" 
+              className="w-80 h-80 object-cover rounded-lg shadow-lg" 
+            />
+          </div>
+          <div className="ml-8">
             <h1 className="text-4xl font-bold mb-4 gradient-text">Learning Paths</h1>
             <p className="text-xl text-gray-400">Comprehensive cybersecurity training paths to advance your career</p>
-            <div className="mt-4 progress-bar"></div>
           </div>
         </div>
       </div>
