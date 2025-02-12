@@ -108,7 +108,7 @@ function CryptoMinerChallenge() {
       {/* Banner Image */}
       <div className="flex justify-center">
         <img
-          src="/cryptominer-banner.jpg"
+          src="/cryptominer-banner.png"
           alt="CryptoMiner Challenge Banner"
           className="w-auto max-h-80 object-cover"
         />
