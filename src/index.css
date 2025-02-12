@@ -175,3 +175,22 @@ body {
     scroll-behavior: smooth;
   }
 }
+
+@keyframes glow-blue-red {
+  0% {
+    border-color: #3b82f6; /* Blue */
+    box-shadow: 0 0 8px rgba(59, 130, 246, 0.8), 0 0 25px rgba(59, 130, 246, 0.6);
+  }
+  50% {
+    border-color: #f87171; /* Red */
+    box-shadow: 0 0 8px rgba(248, 113, 113, 0.8), 0 0 25px rgba(248, 113, 113, 0.6);
+  }
+  100% {
+    border-color: #3b82f6; /* Blue */
+    box-shadow: 0 0 8px rgba(59, 130, 246, 0.8), 0 0 25px rgba(59, 130, 246, 0.6);
+  }
+}
+
+.animate-glow-blue-red {
+  animation: glow-blue-red 4s ease-in-out infinite;
+}
