@@ -61,14 +61,22 @@ function Home() {
           </h2>
         </div>
 
-        {/* Choose Logo */}
-        <div className="mb-16 reveal transform hover:scale-105 transition-transform duration-300">
-          <img 
-            src="/choose-path.png" 
-            alt="Choose Your Path" 
-            className="w-120 h-auto animate-float"
-          />
-        </div>
+{/* Choose Logo */}
+<div className="mb-16 reveal transform hover:scale-105 transition-transform duration-300 relative">
+  {/* Animated Border */}
+  <div className="absolute inset-0 border-4 border-blue-500 rounded-lg z-0 animate-glow-blue-red"></div>
+
+  {/* Logo with Border and Glow Effect */}
+  <div className="relative z-10 p-2 border-4 border-primary-blue/30 rounded-lg">
+    <img 
+      src="/choose-path.png" 
+      alt="Choose Your Path" 
+      className="w-120 h-auto animate-float"
+    />
+  </div>
+</div>
+
+
 
         {/* Team Selection */}
         <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto reveal">
@@ -223,64 +231,92 @@ function Home() {
 </div>
 
 
-      {/* User Reviews Section */}
-      <div className="py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold mb-16 text-center reveal">
-            <span className="text-primary-blue">What Our</span> Users Say
-          </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                name: "John D.",
-                role: "Security Team Lead",
-                review: "This platform has been an incredible resource for my team. The training is clear, well-structured, and practical. The content covers everything from basic concepts to advanced techniques. Highly recommend it for anyone serious about improving their Blue Team skills!",
-                image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fit=crop&w=100&h=100"
-              },
-              {
-                name: "Sarah L.",
-                role: "Cybersecurity Professional",
-                review: "As a cybersecurity professional, I was looking for a comprehensive training solution for my team. This platform provided exactly what we needed! The hands-on labs are particularly useful, and I feel much more confident tackling security incidents now.",
-                image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?fit=crop&w=100&h=100"
-              },
-              {
-                name: "Alex T.",
-                role: "Security Operations Manager",
-                review: "I've gone through several courses, but this one stands out. The Windows security training was top-notch, and the practical exercises gave me real-world experience. I can immediately apply what I learned to my day-to-day job. Will definitely recommend it to my colleagues!",
-                image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?fit=crop&w=100&h=100"
-              }
-            ].map((review, index) => (
-              <div 
-                key={index} 
-                className="reveal bg-primary-dark/30 rounded-lg p-8 border border-primary-blue/20 hover:border-primary-blue transition relative hover-card glass-effect"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                <Quote className="absolute top-4 right-4 w-8 h-8 text-primary-blue/20" />
-                <div className="flex items-center mb-6">
-                  <img
-                    src={review.image}
-                    alt={review.name}
-                    className="w-12 h-12 rounded-full mr-4 border-2 border-primary-blue"
-                  />
-                  <div>
-                    <h3 className="font-semibold text-lg">{review.name}</h3>
-                    <p className="text-primary-blue text-sm">{review.role}</p>
-                  </div>
-                </div>
-                <div className="flex mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className="w-5 h-5 text-yellow-400 fill-current"
-                    />
-                  ))}
-                </div>
-                <p className="text-gray-400 italic">"{review.review}"</p>
-              </div>
+   {/* User Reviews Section */}
+<div className="py-24">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 className="text-3xl font-bold mb-16 text-center text-white">
+      <span className="text-primary-blue">What Our</span> Users Are Saying
+    </h2>
+    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {[
+        {
+          name: "John D.",
+          role: "Security Team Lead",
+          review:
+            "This platform has been an incredible resource for my team. The training is clear, well-structured, and practical. The content covers everything from basic concepts to advanced techniques. Highly recommend it for anyone serious about improving their Blue Team skills!",
+          image:
+            "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fit=crop&w=100&h=100",
+        },
+        {
+          name: "Sarah L.",
+          role: "Cybersecurity Professional",
+          review:
+            "As a cybersecurity professional, I was looking for a comprehensive training solution for my team. This platform provided exactly what we needed! The hands-on labs are particularly useful, and I feel much more confident tackling security incidents now.",
+          image:
+            "https://images.unsplash.com/photo-1494790108377-be9c29b29330?fit=crop&w=100&h=100",
+        },
+        {
+          name: "Alex T.",
+          role: "Security Operations Manager",
+          review:
+            "I've gone through several courses, but this one stands out. The Windows security training was top-notch, and the practical exercises gave me real-world experience. I can immediately apply what I learned to my day-to-day job. Will definitely recommend it to my colleagues!",
+          image:
+            "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?fit=crop&w=100&h=100",
+        },
+        {
+          name: "David M.",
+          role: "Incident Responder",
+          review:
+            "This platform truly excels in providing real-world scenarios for incident response training. The challenges helped me improve my analysis and investigation skills, and I now feel more confident in handling complex threats.",
+          image:
+            "https://images.unsplash.com/photo-1494387302712-4d3171c04237?fit=crop&w=100&h=100",
+        },
+        {
+          name: "Emily W.",
+          role: "Forensics Expert",
+          review:
+            "The hands-on exercises in digital forensics were incredibly valuable. It’s great to have a platform that teaches you the practical aspects, not just theory. The scenarios presented were both engaging and informative.",
+          image:
+            "https://images.unsplash.com/photo-1521747116042-5e31a0c93b8e?fit=crop&w=100&h=100",
+        },
+        {
+          name: "Michael R.",
+          role: "Penetration Tester",
+          review:
+            "The content here is highly relevant for real-world penetration testing. I particularly appreciated the comprehensive Blue Team training. I’ve learned new techniques and enhanced my approach to identifying vulnerabilities in a system.",
+          image:
+            "https://images.unsplash.com/photo-1518770660439-4636190af1d7?fit=crop&w=100&h=100",
+        },
+      ].map((review, index) => (
+        <div
+          key={index}
+          className="reveal bg-primary-dark/40 rounded-lg p-8 border border-primary-blue/20 hover:border-primary-blue transition transform hover:scale-105 relative hover-card glass-effect"
+          style={{ animationDelay: `${index * 100}ms` }}
+        >
+          <Quote className="absolute top-4 right-4 w-8 h-8 text-primary-blue/30" />
+          <div className="flex items-center mb-6">
+            <img
+              src={review.image}
+              alt={review.name}
+              className="w-14 h-14 rounded-full mr-4 border-2 border-primary-blue"
+            />
+            <div>
+              <h3 className="font-semibold text-lg text-white">{review.name}</h3>
+              <p className="text-primary-blue text-sm">{review.role}</p>
+            </div>
+          </div>
+          <div className="flex mb-4">
+            {[...Array(5)].map((_, i) => (
+              <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
             ))}
           </div>
+          <p className="text-gray-300 italic">"{review.review}"</p>
         </div>
-      </div>
+      ))}
+    </div>
+  </div>
+</div>
+
 
       {/* Footer */}
       <footer className="bg-primary-dark py-6 border-t border-primary-blue/20">
