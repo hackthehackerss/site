@@ -23,15 +23,26 @@ function RedTeam() {
         </div>
       </nav>
 
-      <div className="max-w-7xl mx-auto px-4 py-12">
-        <div className="text-center">
-          <h1 className="text-4xl font-bold mb-4">Red Team Courses</h1>
+      {/* Image and Title Section */}
+      <div className="max-w-7xl mx-auto px-4 py-12 flex items-center">
+        <div className="flex-shrink-0">
+          <img 
+            src="/red-team-page.png" 
+            alt="Red Team Page" 
+            className="w-80 h-80 object-cover rounded-lg shadow-lg" // Adjusted size
+          />
+        </div>
+        <div className="ml-8 text-center">
+          <h1 className="text-4xl font-bold mb-4 gradient-text">Red Team Courses</h1>
           <p className="text-xl text-gray-400 mb-8">Coming Soon</p>
-          <div className="bg-primary-dark/30 rounded-lg p-8 border border-primary-red/20">
-            <p className="text-lg">
-              Our Red Team courses are currently under development. Stay tuned for comprehensive offensive security training content!
-            </p>
-          </div>
+        </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 py-12">
+        <div className="bg-primary-dark/30 rounded-lg p-8 border border-primary-red/20">
+          <p className="text-lg">
+            Our Red Team courses are currently under development. Stay tuned for comprehensive offensive security training content!
+          </p>
         </div>
       </div>
     </div>
