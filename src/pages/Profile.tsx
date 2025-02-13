@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ArrowLeft, User, Shield, Award, Loader2, AlertCircle, CheckCircle, LogOut, Save } from 'lucide-react';
+import { ArrowLeft, User, Shield, Award, Loader2, AlertCircle, CheckCircle, LogOut, Save, Activity, Clock, Trophy } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { formatDate } from '../utils/formatters';
 import { useBadges } from '../hooks/useBadges';
@@ -8,6 +8,21 @@ import BadgeCard from '../components/BadgeCard';
 import AvatarSelector from '../components/AvatarSelector';
 import { doc, updateDoc } from 'firebase/firestore';
 import { db } from '../lib/firebase';
+
+interface Stats {
+  completedChallenges: number;
+  totalPoints: number;
+  rank: number;
+  activeDays: number;
+}
+
+interface ActivityLog {
+  id: string;
+  type: 'challenge' | 'course' | 'achievement';
+  title: string;
+  timestamp: Date;
+  points?: number;
+}
 
 function Profile() {
   const navigate = useNavigate();
@@ -17,16 +32,58 @@ function Profile() {
   const [message, setMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
   const [formData, setFormData] = useState({
     firstName: profile?.firstName || '',
-    lastName: profile?.lastName || ''
+    lastName: profile?.lastName || '',
+    bio: profile?.bio || '',
+    location: profile?.location || '',
+    website: profile?.website || '',
+    github: profile?.github || '',
+    twitter: profile?.twitter || ''
   });
   const [saving, setSaving] = useState(false);
 
-  React.useEffect(() => {
+  // Mock stats data (replace with real data in production)
+  const [stats] = useState<Stats>({
+    completedChallenges: 15,
+    totalPoints: 2500,
+    rank: 342,
+    activeDays: 45
+  });
+
+  // Mock activity log (replace with real data in production)
+  const [activityLog] = useState<ActivityLog[]>([
+    {
+      id: '1',
+      type: 'challenge',
+      title: 'Completed PowerShell Analysis Challenge',
+      timestamp: new Date('2024-03-10'),
+      points: 500
+    },
+    {
+      id: '2',
+      type: 'course',
+      title: 'Completed Cybersecurity Fundamentals Module',
+      timestamp: new Date('2024-03-08'),
+      points: 300
+    },
+    {
+      id: '3',
+      type: 'achievement',
+      title: 'Earned First Blood Badge',
+      timestamp: new Date('2024-03-05')
+    }
+  ]);
+
+  useEffect(() => {
     if (profile) {
       loadBadges();
       setFormData({
         firstName: profile.firstName || '',
-        lastName: profile.lastName || ''
+        lastName: profile.lastName || '',
+        bio: profile.bio || '',
+        location: profile.location || '',
+        website: profile.website || '',
+        github: profile.github || '',
+        twitter: profile.twitter || ''
       });
     }
   }, [profile]);
@@ -68,10 +125,7 @@ function Profile() {
     setSaving(true);
     try {
       const userRef = doc(db, 'profiles', profile.uid);
-      await updateDoc(userRef, {
-        firstName: formData.firstName,
-        lastName: formData.lastName
-      });
+      await updateDoc(userRef, formData);
       setMessage({
         type: 'success',
         text: 'Profile updated successfully'
@@ -94,7 +148,6 @@ function Profile() {
     const shareUrls = generateShareUrl(badge);
     window.open(shareUrls[platform], '_blank');
     await incrementShareCount(badgeId);
-    
     loadBadges();
   };
 
@@ -109,16 +162,6 @@ function Profile() {
         text: 'Failed to sign out. Please try again.'
       });
     }
-  };
-
-  const handleViewPlans = () => {
-    navigate('/?scrollTo=pricing');
-    setTimeout(() => {
-      const pricingSection = document.getElementById('pricing');
-      if (pricingSection) {
-        pricingSection.scrollIntoView({ behavior: 'smooth' });
-      }
-    }, 100);
   };
 
   if (profileLoading || !profile) {
@@ -188,6 +231,20 @@ function Profile() {
           </div>
 
           <div className="mt-8 space-y-6">
+            {/* Bio */}
+            <div>
+              <label className="block text-sm font-medium text-gray-400 mb-2">
+                Bio
+              </label>
+              <textarea
+                value={formData.bio}
+                onChange={(e) => setFormData({ ...formData, bio: e.target.value })}
+                className="w-full px-4 py-2 rounded-md bg-background border border-primary-blue/20 text-white focus:outline-none focus:border-primary-blue"
+                rows={4}
+              />
+            </div>
+
+            {/* Personal Information */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-sm font-medium text-gray-400 mb-2">
@@ -211,7 +268,56 @@ function Profile() {
                   className="w-full px-4 py-2 rounded-md bg-background border border-primary-blue/20 text-white focus:outline-none focus:border-primary-blue"
                 />
               </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-400 mb-2">
+                  Location
+                </label>
+                <input
+                  type="text"
+                  value={formData.location}
+                  onChange={(e) => setFormData({ ...formData, location: e.target.value })}
+                  className="w-full px-4 py-2 rounded-md bg-background border border-primary-blue/20 text-white focus:outline-none focus:border-primary-blue"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-400 mb-2">
+                  Website
+                </label>
+                <input
+                  type="url"
+                  value={formData.website}
+                  onChange={(e) => setFormData({ ...formData, website: e.target.value })}
+                  className="w-full px-4 py-2 rounded-md bg-background border border-primary-blue/20 text-white focus:outline-none focus:border-primary-blue"
+                />
+              </div>
             </div>
+
+            {/* Social Links */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label className="block text-sm font-medium text-gray-400 mb-2">
+                  GitHub Username
+                </label>
+                <input
+                  type="text"
+                  value={formData.github}
+                  onChange={(e) => setFormData({ ...formData, github: e.target.value })}
+                  className="w-full px-4 py-2 rounded-md bg-background border border-primary-blue/20 text-white focus:outline-none focus:border-primary-blue"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-400 mb-2">
+                  Twitter Username
+                </label>
+                <input
+                  type="text"
+                  value={formData.twitter}
+                  onChange={(e) => setFormData({ ...formData, twitter: e.target.value })}
+                  className="w-full px-4 py-2 rounded-md bg-background border border-primary-blue/20 text-white focus:outline-none focus:border-primary-blue"
+                />
+              </div>
+            </div>
+
             <div className="flex justify-end">
               <button
                 onClick={handleProfileUpdate}
@@ -231,6 +337,67 @@ function Profile() {
                 )}
               </button>
             </div>
+          </div>
+        </div>
+
+        {/* Stats Section */}
+        <div className="bg-primary-dark/30 rounded-lg p-8 border border-primary-blue/20 mb-8">
+          <div className="flex items-center space-x-4 mb-6">
+            <Activity className="w-6 h-6 text-primary-blue" />
+            <h2 className="text-xl font-bold">Stats & Progress</h2>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div className="bg-background/50 rounded-lg p-6 border border-primary-blue/10">
+              <Trophy className="w-8 h-8 text-primary-blue mb-2" />
+              <div className="text-2xl font-bold">{stats.completedChallenges}</div>
+              <div className="text-gray-400">Challenges Completed</div>
+            </div>
+            <div className="bg-background/50 rounded-lg p-6 border border-primary-blue/10">
+              <Award className="w-8 h-8 text-primary-blue mb-2" />
+              <div className="text-2xl font-bold">{stats.totalPoints}</div>
+              <div className="text-gray-400">Total Points</div>
+            </div>
+            <div className="bg-background/50 rounded-lg p-6 border border-primary-blue/10">
+              <Shield className="w-8 h-8 text-primary-blue mb-2" />
+              <div className="text-2xl font-bold">#{stats.rank}</div>
+              <div className="text-gray-400">Global Rank</div>
+            </div>
+            <div className="bg-background/50 rounded-lg p-6 border border-primary-blue/10">
+              <Clock className="w-8 h-8 text-primary-blue mb-2" />
+              <div className="text-2xl font-bold">{stats.activeDays}</div>
+              <div className="text-gray-400">Active Days</div>
+            </div>
+          </div>
+        </div>
+
+        {/* Activity Log */}
+        <div className="bg-primary-dark/30 rounded-lg p-8 border border-primary-blue/20 mb-8">
+          <div className="flex items-center space-x-4 mb-6">
+            <Activity className="w-6 h-6 text-primary-blue" />
+            <h2 className="text-xl font-bold">Recent Activity</h2>
+          </div>
+          
+          <div className="space-y-4">
+            {activityLog.map((activity) => (
+              <div 
+                key={activity.id}
+                className="bg-background/50 rounded-lg p-4 border border-primary-blue/10 flex items-center justify-between"
+              >
+                <div className="flex items-center space-x-4">
+                  {activity.type === 'challenge' && <Trophy className="w-5 h-5 text-primary-blue" />}
+                  {activity.type === 'course' && <Book className="w-5 h-5 text-primary-blue" />}
+                  {activity.type === 'achievement' && <Award className="w-5 h-5 text-primary-blue" />}
+                  <div>
+                    <div className="font-medium">{activity.title}</div>
+                    <div className="text-sm text-gray-400">{formatDate(activity.timestamp)}</div>
+                  </div>
+                </div>
+                {activity.points && (
+                  <div className="text-primary-blue font-medium">+{activity.points} pts</div>
+                )}
+              </div>
+            ))}
           </div>
         </div>
 
@@ -265,12 +432,12 @@ function Profile() {
           ) : (
             <div className="text-center py-4">
               <p className="text-gray-400 mb-4">No active subscription</p>
-              <button
-                onClick={handleViewPlans}
+              <Link
+                to="/pricing"
                 className="bg-primary-blue text-background px-6 py-2 rounded-md hover:bg-secondary-blue transition"
               >
                 View Subscription Plans
-              </button>
+              </Link>
             </div>
           )}
         </div>
