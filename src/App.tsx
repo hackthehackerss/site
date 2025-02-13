@@ -21,6 +21,8 @@ import ContactUs from './pages/ContactUs';
 import RedTeam from './pages/RedTeam';
 import { AuthProvider } from './contexts/AuthContext';
 import MinerOnTheRun from './pages/MinerOnTheRun';
+import Pricing from './pages/Pricing';
+import Payment from './pages/Payment';
 
 function App() {
   return (
@@ -47,6 +49,8 @@ function App() {
           <Route path="/terms" element={<TermsOfUse />} />
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/red-team" element={<RedTeam />} />
+          <Route path="/pricing" element={<Pricing />} />
+          <Route path="/payment" element={<Payment />} />
         </Routes>
       </Router>
     </AuthProvider>
