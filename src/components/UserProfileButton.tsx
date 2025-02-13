@@ -77,7 +77,7 @@ function UserProfileButton() {
               </button>
             )}
             <button
-              onClick={() => handleMenuClick(() => navigate('/profile'))}
+              onClick={() => handleMenuClick(() => navigate('/Profile'))}
               className="w-full text-left px-4 py-2 text-sm text-white hover:bg-primary-blue/10 transition-colors cursor-pointer flex items-center"
               role="menuitem"
             >
