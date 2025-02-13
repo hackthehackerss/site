@@ -23,6 +23,7 @@ import { AuthProvider } from './contexts/AuthContext';
 import MinerOnTheRun from './pages/MinerOnTheRun';
 import Pricing from './pages/Pricing';
 import Payment from './pages/Payment';
+import BlockedPage from './pages/blocked';
 
 function App() {
   return (
@@ -39,7 +40,7 @@ function App() {
           <Route path="/cyber-threat-intelligence" element={<CyberThreatIntelligence />} />
           <Route path="/challenges" element={<Challenges />} />
           <Route path="/challenges/powershell-logs" element={<PowerShellChallenge />} />
-          <Route path="/challenges/miner-on-the-run" element={<MinerOnTheRun />} /> 
+          <Route path="/challenges/miner-on-the-run" element={<MinerOnTheRun />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/profile" element={<Profile />} />
@@ -51,6 +52,7 @@ function App() {
           <Route path="/red-team" element={<RedTeam />} />
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/payment" element={<Payment />} />
+          <Route path="/blocked" element={<BlockedPage />} />
         </Routes>
       </Router>
     </AuthProvider>
