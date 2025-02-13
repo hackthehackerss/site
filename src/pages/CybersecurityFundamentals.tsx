@@ -133,6 +133,148 @@ function CybersecurityFundamentals() {
       }
     },
     {
+      id: "careers-in-cybersecurity",
+      title: "Careers in Cybersecurity",
+      content: {
+        introduction: "Cybersecurity is one of the fastest-growing fields, offering job security, competitive salaries, and exciting challenges. With the rise in cyber threats, organizations worldwide need skilled professionals to protect their digital assets. A career in cybersecurity allows you to work in various industries, from finance and healthcare to government and technology. Whether you enjoy problem-solving, ethical hacking, or analyzing cyber threats, there's a role suited for you.",
+        sections: [
+          {
+            title: "Security Operations Center (SOC) Analyst",
+            content: [
+              "Job Description:",
+              "SOC Analysts are the first line of defense against cyber threats. They monitor security alerts, investigate potential incidents, and respond to cyberattacks in real time. They work in a Security Operations Center (SOC), analyzing logs and network traffic to detect malicious activity.",
+              "",
+              "Key Responsibilities:",
+              "- Monitor and analyze security alerts from SIEM tools.",
+              "- Investigate suspicious activities and escalate threats.",
+              "- Respond to security incidents and document findings.",
+              "- Perform threat intelligence analysis.",
+              "- Conduct vulnerability assessments.",
+              "",
+              "Required Skills:",
+              "- Knowledge of SIEM tools (Splunk, ELK, etc.).",
+              "- Familiarity with Windows, Linux, and networking fundamentals.",
+              "- Understanding of malware analysis and threat intelligence.",
+              "- Strong analytical and problem-solving skills."
+            ]
+          },
+          {
+            title: "Security Engineer",
+            content: [
+              "Job Description:",
+              "Security Engineers design, implement, and maintain security controls to protect an organization’s infrastructure. They focus on strengthening defenses to prevent cyber threats.",
+              "",
+              "Key Responsibilities:",
+              "- Develop and implement security policies and procedures.",
+              "- Configure and manage firewalls, IDS/IPS, and endpoint security solutions.",
+              "- Perform security assessments and penetration testing.",
+              "- Automate security processes.",
+              "- Conduct security training for employees.",
+              "",
+              "Required Skills:",
+              "- Strong understanding of networking and system administration.",
+              "- Proficiency in scripting languages (Python, Bash, PowerShell).",
+              "- Experience with cloud security (AWS, Azure, GCP).",
+              "- Knowledge of cryptography and secure coding practices."
+            ]
+          },
+          {
+            title: "Incident Responder",
+            content: [
+              "Job Description:",
+              "Incident Responders handle cybersecurity incidents, mitigating damage and preventing recurrence. They work to identify, contain, and remediate cyberattacks.",
+              "",
+              "Key Responsibilities:",
+              "- Analyze and contain security incidents.",
+              "- Conduct forensic analysis on compromised systems.",
+              "- Develop incident response plans and playbooks.",
+              "- Work with SOC analysts to investigate threats.",
+              "- Provide recommendations for security improvements.",
+              "",
+              "Required Skills:",
+              "- Proficiency in digital forensics and malware analysis.",
+              "- Understanding of attack techniques (MITRE ATT&CK framework).",
+              "- Experience with EDR, SIEM, and forensic tools.",
+              "- Strong communication and report-writing skills."
+            ]
+          },
+          {
+            title: "Digital Forensics Analyst",
+            content: [
+              "Job Description:",
+              "Digital Forensics Analysts investigate cybercrimes by analyzing digital evidence. They work on legal cases, corporate investigations, and incident response teams.",
+              "",
+              "Key Responsibilities:",
+              "- Collect and analyze digital evidence from computers, servers, and mobile devices.",
+              "- Recover deleted files and trace cybercriminal activities.",
+              "- Prepare forensic reports and provide expert testimony.",
+              "- Use forensic tools such as Autopsy, EnCase, and FTK.",
+              "- Maintain the integrity and chain of custody of evidence.",
+              "",
+              "Required Skills:",
+              "- Deep knowledge of file systems and operating systems.",
+              "- Experience with forensic tools and methodologies.",
+              "- Strong attention to detail and analytical thinking.",
+              "- Understanding of cyber laws and compliance requirements."
+            ]
+          },
+          {
+            title: "Malware Analyst",
+            content: [
+              "Job Description:",
+              "Malware Analysts study malicious software to understand how it works and how to defend against it. They reverse-engineer malware to uncover its purpose and mitigate threats.",
+              "",
+              "Key Responsibilities:",
+              "- Analyze malware samples using dynamic and static analysis techniques.",
+              "- Reverse-engineer malware using tools like IDA Pro and Ghidra.",
+              "- Develop signatures and countermeasures to detect and remove malware.",
+              "- Research emerging threats and document findings.",
+              "- Collaborate with incident responders and threat intelligence teams.",
+              "",
+              "Required Skills:",
+              "- Proficiency in assembly language and reverse engineering.",
+              "- Knowledge of Windows internals and sandbox environments.",
+              "- Experience with debugging tools (OllyDbg, x64dbg).",
+              "- Strong programming skills (Python, C, C++)."
+            ]
+          },
+          {
+            title: "Penetration Tester",
+            content: [
+              "Job Description:",
+              "Penetration Testers (ethical hackers) simulate cyberattacks to identify security weaknesses in systems, networks, and applications.",
+              "",
+              "Key Responsibilities:",
+              "- Conduct vulnerability assessments and penetration tests.",
+              "- Exploit security flaws to demonstrate potential risks.",
+              "- Provide remediation recommendations to fix vulnerabilities.",
+              "- Write detailed reports on findings.",
+              "- Keep up with the latest hacking techniques and tools.",
+              "",
+              "Required Skills:",
+              "- Strong understanding of networking, web applications, and operating systems.",
+              "- Proficiency in penetration testing tools (Burp Suite, Metasploit, Nmap).",
+              "- Knowledge of scripting (Python, Bash) and exploit development.",
+              "- Certifications such as OSCP, CEH are a plus."
+            ]
+          },
+          {
+            title: "Career Growth Opportunities",
+            content: [
+              "Cybersecurity offers numerous opportunities for career advancement. Professionals can start in entry-level roles and progress to specialized or leadership positions such as:",
+              "- Security Architect: Designs security frameworks and ensures overall security posture.",
+              "- Threat Hunter: Proactively searches for hidden threats within an organization.",
+              "- Chief Information Security Officer (CISO): Leads an organization’s cybersecurity strategy and teams.",
+              "- Red Team vs. Blue Team Specialist: Focuses on offensive (Red) or defensive (Blue) security strategies.",
+              "- Cybersecurity Consultant: Provides security expertise to various organizations.",
+              "",
+              "With continuous learning, certifications (CISSP, OSCP, GIAC, etc.), and hands-on experience, professionals can shape their careers based on their interests and skills."
+            ]
+          }
+        ]
+      }
+    },
+    {
       id: "cia-triad",
       title: "The CIA Triad",
       content: {
