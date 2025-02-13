@@ -38,7 +38,7 @@ function Home() {
             <div className="hidden md:flex items-center space-x-8">
               <Link to="/challenges" className={`${darkMode ? 'text-primary-blue hover:text-primary-blue/80' : 'text-gray-700 hover:text-gray-900'}`}>Challenges</Link>
               <Link to="/leaderboard" className={`${darkMode ? 'text-primary-blue hover:text-primary-blue/80' : 'text-gray-700 hover:text-gray-900'}`}>Leaderboard</Link>
-              <Link to="/pricing" className={`${darkMode ? 'text-primary-blue hover:text-primary-blue/80' : 'text-gray-700 hover:text-gray-900'}`}>Plan & Pricing</Link>
+              <Link to="/Pricing.tsx" className={`${darkMode ? 'text-primary-blue hover:text-primary-blue/80' : 'text-gray-700 hover:text-gray-900'}`}>Plan & Pricing</Link>
               <button onClick={toggleDarkMode} className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition">
                 {darkMode ? <Sun className="w-6 h-6 text-yellow-400" /> : <Moon className="w-6 h-6 text-gray-700" />}
               </button>
