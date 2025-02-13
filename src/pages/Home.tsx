@@ -1,14 +1,62 @@
 import React, { useState } from 'react';
-import Navigation from '../components/Navigation';
+import { Link } from 'react-router-dom';
+import { User, Shield, Award, Trophy, Star, Quote, CheckCircle2, Search, Moon, Sun, MessageCircle } from 'lucide-react';
+import UserProfileButton from '../components/UserProfileButton';
+import { useAuth } from '../contexts/AuthContext';
 
 function Home() {
-  const [darkMode, setDarkMode] = useState(true);
+  const { profile } = useAuth();
   const [billingCycle, setBillingCycle] = useState<'monthly' | 'annual'>('monthly');
-  const [isChatOpen, setIsChatOpen] = useState(false);
+  const [darkMode, setDarkMode] = useState(true); // Dark mode state
+  const [isChatOpen, setIsChatOpen] = useState(false); // Chatbot state
+
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+    document.documentElement.classList.toggle('dark', !darkMode);
+  };
 
   return (
     <div className={`min-h-screen ${darkMode ? 'bg-background text-white' : 'bg-gray-50 text-gray-900'}`}>
-      <Navigation darkMode={darkMode} onToggleDarkMode={() => setDarkMode(!darkMode)} />
+      {/* Navigation */}
+      <nav className={`${darkMode ? 'bg-primary-dark border-b border-primary-blue/20' : 'bg-white border-b border-gray-200'} glass-effect`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between h-16 items-center">
+            <div className="flex items-center space-x-4">
+              <div className="logo-glitch">
+                <img 
+                  src="/logo-shield.png" 
+                  alt="HackTheHackers Logo" 
+                  className="h-10 w-auto animate-float"
+                />
+              </div>
+              <span className="text-xl font-bold">
+                <span className={darkMode ? 'text-white' : 'text-gray-900'}>Hack</span>
+                <span className="text-primary-red">The</span>
+                <span className={darkMode ? 'text-white' : 'text-gray-900'}>Hackers</span>
+              </span>
+            </div>
+            <div className="hidden md:flex items-center space-x-8">
+              <Link to="/challenges" className={`${darkMode ? 'text-primary-blue hover:text-primary-blue/80' : 'text-gray-700 hover:text-gray-900'}`}>Challenges</Link>
+              <Link to="/leaderboard" className={`${darkMode ? 'text-primary-blue hover:text-primary-blue/80' : 'text-gray-700 hover:text-gray-900'}`}>Leaderboard</Link>
+              <Link to="/pricing" className={`${darkMode ? 'text-primary-blue hover:text-primary-blue/80' : 'text-gray-700 hover:text-gray-900'}`}>Plan & Pricing</Link>
+              <button onClick={toggleDarkMode} className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition">
+                {darkMode ? <Sun className="w-6 h-6 text-yellow-400" /> : <Moon className="w-6 h-6 text-gray-700" />}
+              </button>
+              <Search className={`w-6 h-6 ${darkMode ? 'text-primary-blue' : 'text-gray-700'} cursor-pointer`} />
+              {profile ? (
+                <UserProfileButton />
+              ) : (
+                <>
+                  <Link to="/signin" className={`${darkMode ? 'text-primary-blue hover:text-primary-blue/80' : 'text-gray-700 hover:text-gray-900'}`}>Sign In</Link>
+                  <Link to="/signup" className="bg-primary-red text-white px-4 py-2 rounded-md hover:bg-secondary-red transition">
+                    Get Started
+                  </Link>
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+      </nav>
 
       {/* Hero Section */}
       <div className={`relative min-h-screen flex flex-col items-center justify-center text-center px-4 py-20 ${darkMode ? 'bg-gradient-to-b from-primary-dark to-background' : 'bg-gradient-to-b from-gray-50 to-white'}`}>
@@ -130,7 +178,7 @@ function Home() {
             {[ 
               {
                 name: 'Basic',
-                price: 0,
+                price: 0,  // Free Plan
                 features: [
                   'Free Challenges',
                   'Cybersecurity Fundamentals'
@@ -139,7 +187,7 @@ function Home() {
               },
               {
                 name: 'Pro',
-                price: billingCycle === 'monthly' ? 24 : 20,
+                price: billingCycle === 'monthly' ? 24 : 20,  // Monthly $24, Annual $20/month (for annual billing)
                 popular: true,
                 features: [
                   'All Challenges',
@@ -277,7 +325,7 @@ function Home() {
                 name: "Emily W.",
                 role: "Forensics Expert",
                 review:
-                  "The hands-on exercises in digital forensics were incredibly valuable. It's great to have a platform that teaches you the practical aspects, not just theory. The scenarios presented were both engaging and informative.",
+                  "The hands-on exercises in digital forensics were incredibly valuable. It’s great to have a platform that teaches you the practical aspects, not just theory. The scenarios presented were both engaging and informative.",
                 image:
                   "https://images.unsplash.com/photo-1521747116042-5e31a0c93b8e?fit=crop&w=100&h=100",
               },
@@ -285,7 +333,7 @@ function Home() {
                 name: "Michael R.",
                 role: "Penetration Tester",
                 review:
-                  "The content here is highly relevant for real-world penetration testing. I particularly appreciated the comprehensive Blue Team training. I've learned new techniques and enhanced my approach to identifying vulnerabilities in a system.",
+                  "The content here is highly relevant for real-world penetration testing. I particularly appreciated the comprehensive Blue Team training. I’ve learned new techniques and enhanced my approach to identifying vulnerabilities in a system.",
                 image:
                   "https://images.unsplash.com/photo-1518770660439-4636190af1d7?fit=crop&w=100&h=100",
               },
@@ -372,6 +420,7 @@ function Home() {
       </footer>
     </div>
   );
+  
 }
 
 export default Home;
