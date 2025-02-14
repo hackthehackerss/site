@@ -21,6 +21,7 @@ import ContactUs from './pages/ContactUs';
 import RedTeam from './pages/RedTeam';
 import { AuthProvider } from './contexts/AuthContext';
 import MinerOnTheRun from './pages/MinerOnTheRun';
+import MFTChallenge from './pages/MasterFileTrap'; // Import the new component
 
 function App() {
   return (
@@ -47,6 +48,7 @@ function App() {
           <Route path="/terms" element={<TermsOfUse />} />
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/red-team" element={<RedTeam />} />
+          <Route path="/challenges/mft-analysis" element={<MFTChallenge />} /> {/* Use MFTChallenge here */}
         </Routes>
       </Router>
     </AuthProvider>
