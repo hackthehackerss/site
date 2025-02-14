@@ -256,7 +256,7 @@ function CybersecurityFundamentals() {
               "- Provide remediation recommendations to fix vulnerabilities.",
               "- Write detailed reports on findings.",
               "- Keep up with the latest hacking techniques and tools.",
-              "",
+              "", // Blank line
               "Required Skills:",
               "- Strong understanding of networking, web applications, and operating systems.",
               "- Proficiency in penetration testing tools (Burp Suite, Metasploit, Nmap).",
@@ -722,7 +722,7 @@ function CybersecurityFundamentals() {
         <img
           src={activeSubSectionContent.image}
           alt={activeSubSectionContent.title}
-          className="w-64 h-64 object-cover rounded-lg" // Adjust width and height as needed
+          className="w-80 h-80 object-cover rounded-lg" // Adjust width and height as needed
         />
       </div>
     </div>
