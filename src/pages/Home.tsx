@@ -15,6 +15,55 @@ function Home() {
     document.documentElement.classList.toggle('dark', !darkMode);
   };
 
+    // Moving Bar Component
+    const MovingBar = ({ darkMode = false }) => {
+      const companies = [
+        { name: 'Meta', logo: '/logos/meta.png' },
+        { name: 'Cisco', logo: '/logos/cisco.png' },
+        { name: 'Microsoft', logo: '/logos/microsoft.png' },
+        { name: 'Mitre', logo: '/logos/mitre.png' },
+        { name: 'Google', logo: '/logos/google.png' },
+        { name: 'Amazon', logo: '/logos/amazon.png' },
+        { name: 'IBM', logo: '/logos/ibm.png' },
+        { name: 'Palo Alto', logo: '/logos/palo.png' },
+        { name: 'Check Point', logo: '/logos/check.png' },
+        { name: 'Crowdstrike', logo: '/logos/cs.png' },
+      ];
+    
+      return (
+        <div className="py-6 overflow-hidden">
+          <div className="text-center mb-4">
+            <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+            </h3>
+          </div>
+    
+          <div className="relative w-full overflow-hidden">
+            <div className="flex items-center space-x-10 animate-marquee">
+              {[...companies, ...companies].map((company, index) => (
+                <img
+                  key={index}
+                  src={company.logo}
+                  alt={company.name}
+                  className="h-16 w-auto md:h-20 opacity-80 hover:opacity-100 transition-opacity"
+                />
+              ))}
+            </div>
+          </div>
+    
+          <style jsx>{`
+            @keyframes marquee {
+              from { transform: translateX(0); }
+              to { transform: translateX(-100%); }
+            }
+            .animate-marquee {
+              display: flex;
+              animation: marquee 15s linear infinite;
+            }
+          `}</style>
+        </div>
+      );
+    };
+
   return (
     <div className={`min-h-screen ${darkMode ? 'bg-background text-white' : 'bg-gray-50 text-gray-900'}`}>
       {/* Navigation */}
@@ -235,6 +284,8 @@ function Home() {
           </div>
         </div>
       </div>
+      
+
 
       {/* What's New Section */}
       <div className={`py-24 ${darkMode ? 'bg-primary-dark/50' : 'bg-gray-100'}`}>
@@ -281,6 +332,10 @@ function Home() {
         </div>
       </div>
 
+     {/* Moving Bar */}
+     <MovingBar />
+
+     
       {/* User Reviews Section */}
       <div className="py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
