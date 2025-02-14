@@ -194,3 +194,25 @@ body {
 .animate-glow-blue-red {
   animation: glow-blue-red 4s ease-in-out infinite;
 }
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-100%); }
+}
+
+.animate-marquee {
+  animation: marquee 20s linear infinite;
+  display: flex; /* Ensure the logos are in a row */
+  white-space: nowrap; /* Prevent logos from wrapping */
+}
+
+.marquee-content {
+  display: flex;
+  align-items: center; /* Center logos vertically */
+}
+
+.marquee-content img {
+  width: 200px; /* Set a reasonable width */
+  height: auto; /* Maintain aspect ratio */
+  margin-right: 40px; /* Add spacing between logos */
+}
