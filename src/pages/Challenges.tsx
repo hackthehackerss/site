@@ -33,6 +33,17 @@ function Challenges() {
     },
     {
       id: 3,
+      title: 'Master File Trap',
+      description: 'Analyze the Master File Table (MFT) to uncover details of a malware attack.',
+      icon: Terminal,
+      questions: 10,
+      points: 700,
+      difficulty: 'Medium',
+      category: 'DFIR',
+      link: '/challenges/mft-analysis',
+    },
+    {
+      id: 4,
       title: 'Malware Analysis Challenge (Testing Its empty)',
       description: 'Analyze a malicious binary and identify its behavior and impact.',
       icon: Construction,
@@ -42,17 +53,7 @@ function Challenges() {
       category: 'Malware Analysis',
       link: '/challenges/malware-analysis',
     },
-    {
-      id: 4,
-      title: 'DFIR Memory Forensics (Testing Its empty)',
-      description: 'Perform memory forensics on a compromised system to identify malicious processes.',
-      icon: Construction,
-      questions: 15,
-      points: 800,
-      difficulty: 'Hard',
-      category: 'DFIR',
-      link: '/challenges/dfir-memory',
-    },
+    
     {
       id: 5,
       title: 'More Challenges Coming Soon',
