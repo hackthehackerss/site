@@ -140,6 +140,7 @@ function CybersecurityFundamentals() {
         sections: [
           {
             title: "Security Operations Center (SOC) Analyst",
+            image: "/Fundamentals/soc.png", // Add image path
             content: [
               "Job Description:",
               "SOC Analysts are the first line of defense against cyber threats. They monitor security alerts, investigate potential incidents, and respond to cyberattacks in real time. They work in a Security Operations Center (SOC), analyzing logs and network traffic to detect malicious activity.",
@@ -160,6 +161,7 @@ function CybersecurityFundamentals() {
           },
           {
             title: "Security Engineer",
+            image: "/Fundamentals/Engineer.png", // Add image path
             content: [
               "Job Description:",
               "Security Engineers design, implement, and maintain security controls to protect an organization’s infrastructure. They focus on strengthening defenses to prevent cyber threats.",
@@ -180,6 +182,7 @@ function CybersecurityFundamentals() {
           },
           {
             title: "Incident Responder",
+            image: "/Fundamentals/Responder.png", // Add image path
             content: [
               "Job Description:",
               "Incident Responders handle cybersecurity incidents, mitigating damage and preventing recurrence. They work to identify, contain, and remediate cyberattacks.",
@@ -200,6 +203,7 @@ function CybersecurityFundamentals() {
           },
           {
             title: "Digital Forensics Analyst",
+            image: "/Fundamentals/Forensics.png", // Add image path
             content: [
               "Job Description:",
               "Digital Forensics Analysts investigate cybercrimes by analyzing digital evidence. They work on legal cases, corporate investigations, and incident response teams.",
@@ -220,6 +224,7 @@ function CybersecurityFundamentals() {
           },
           {
             title: "Malware Analyst",
+            image: "/Fundamentals/Malware.png", // Add image path
             content: [
               "Job Description:",
               "Malware Analysts study malicious software to understand how it works and how to defend against it. They reverse-engineer malware to uncover its purpose and mitigate threats.",
@@ -240,6 +245,7 @@ function CybersecurityFundamentals() {
           },
           {
             title: "Penetration Tester",
+            image: "/Fundamentals/PTester.png", // Add image path
             content: [
               "Job Description:",
               "Penetration Testers (ethical hackers) simulate cyberattacks to identify security weaknesses in systems, networks, and applications.",
@@ -260,6 +266,7 @@ function CybersecurityFundamentals() {
           },
           {
             title: "Career Growth Opportunities",
+            image: "/Fundamentals/career.png", // Add image path
             content: [
               "Cybersecurity offers numerous opportunities for career advancement. Professionals can start in entry-level roles and progress to specialized or leadership positions such as:",
               "- Security Architect: Designs security frameworks and ensures overall security posture.",
@@ -708,37 +715,49 @@ function CybersecurityFundamentals() {
                       ))}
                     </div>
                   ) : (
-                    <div className="prose prose-invert max-w-none">
-                      {activeSubSectionContent.content.map((item, i) => {
-                        if (item.startsWith('-')) {
-                          return (
-                            <ul key={i} className="list-disc list-inside reveal-left" style={{ animationDelay: `${i * 100}ms` }}>
-                              <li className="text-gray-200 hover:text-primary-blue transition-colors">{item.substring(2)}</li>
-                            </ul>
-                          );
-                        }
-                        
-                        if (item.includes(':')) {
-                          const [title, ...rest] = item.split(':');
-                          return (
-                            <div key={i} className="mb-4 reveal-right" style={{ animationDelay: `${i * 100}ms` }}>
-                              <span className="font-bold">{title}:</span>
-                              {rest.length > 0 && (
-                                <span className="text-gray-200 hover:text-white transition-colors">
-                                  {rest.join(':')}
-                                </span>
-                              )}
-                            </div>
-                          );
-                        }
-                        
-                        return (
-                          <p key={i} className="text-gray-200 reveal" style={{ animationDelay: `${i * 100}ms` }}>
-                            {item}
-                          </p>
-                        );
-                      })}
-                    </div>
+<div className="prose prose-invert max-w-none">
+  {activeSubSectionContent.image && (
+    <div className="mb-6 reveal-scale flex justify-center">
+      <div className="border-4 border-primary-blue/20 rounded-lg p-2 shadow-lg bg-primary-dark/20">
+        <img
+          src={activeSubSectionContent.image}
+          alt={activeSubSectionContent.title}
+          className="w-64 h-64 object-cover rounded-lg" // Adjust width and height as needed
+        />
+      </div>
+    </div>
+  )}
+  {activeSubSectionContent.content.map((item, i) => {
+    if (item.startsWith('-')) {
+      return (
+        <ul key={i} className="list-disc list-inside reveal-left" style={{ animationDelay: `${i * 100}ms` }}>
+          <li className="text-gray-200 hover:text-primary-blue transition-colors">{item.substring(2)}</li>
+        </ul>
+      );
+    }
+    
+    if (item.includes(':')) {
+      const [title, ...rest] = item.split(':');
+      return (
+        <div key={i} className="mb-4 reveal-right" style={{ animationDelay: `${i * 100}ms` }}>
+          <span className="font-bold">{title}:</span>
+          {rest.length > 0 && (
+            <span className="text-gray-200 hover:text-white transition-colors">
+              {rest.join(':')}
+            </span>
+          )}
+        </div>
+      );
+    }
+    
+    return (
+      <p key={i} className="text-gray-200 reveal" style={{ animationDelay: `${i * 100}ms` }}>
+        {item}
+      </p>
+    );
+  })}
+</div>
+
                   )}
                 </div>
               )}
