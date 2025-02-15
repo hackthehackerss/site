@@ -1,0 +1,206 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: #0f172a;
+  color: #ffffff;
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(0, 240, 255, 0.15), transparent 50%),
+    radial-gradient(circle at 85% 30%, rgba(255, 0, 51, 0.1), transparent 50%),
+    linear-gradient(180deg, #0f172a 0%, #1a1a2e 100%);
+  background-attachment: fixed;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Add smooth transitions for search */
+.search-transition-enter {
+  opacity: 0;
+  transform: scale(0.9);
+}
+.search-transition-enter-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 200ms, transform 200ms;
+}
+.search-transition-exit {
+  opacity: 1;
+  transform: scale(1);
+}
+.search-transition-exit-active {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 200ms, transform 200ms;
+}
+
+/* Title Effects */
+.title-gradient {
+  background: linear-gradient(to right, #fff, #00f0ff, #fff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  background-size: 200% auto;
+  animation: shine 3s linear infinite;
+}
+
+.title-glow {
+  text-shadow: 0 0 10px rgba(0, 240, 255, 0.5),
+               0 0 20px rgba(0, 240, 255, 0.3),
+               0 0 30px rgba(0, 240, 255, 0.2);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.subtitle-gradient {
+  background: linear-gradient(to right, #ff0033, #00f0ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradientMove 3s ease infinite;
+}
+
+@keyframes shine {
+  to {
+    background-position: 200% center;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    text-shadow: 0 0 10px rgba(0, 240, 255, 0.5),
+                 0 0 20px rgba(0, 240, 255, 0.3),
+                 0 0 30px rgba(0, 240, 255, 0.2);
+  }
+  50% {
+    text-shadow: 0 0 15px rgba(0, 240, 255, 0.7),
+                 0 0 25px rgba(0, 240, 255, 0.5),
+                 0 0 35px rgba(0, 240, 255, 0.3);
+  }
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Logo Glitch Effect */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.logo-glitch {
+  position: relative;
+  display: inline-block;
+}
+
+.logo-glitch::before,
+.logo-glitch::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: inherit;
+  background-size: inherit;
+  background-position: inherit;
+  background-repeat: inherit;
+}
+
+.logo-glitch::before {
+  animation: glitch-channel-1 3s steps(1) infinite;
+  clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+  opacity: 0.75;
+  transform: translate(-2px);
+}
+
+.logo-glitch::after {
+  animation: glitch-channel-2 3s steps(1) infinite reverse;
+  clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%);
+  opacity: 0.75;
+  transform: translate(2px);
+}
+
+@keyframes glitch-channel-1 {
+  0% { opacity: 0.75; }
+  5% { transform: translate(-2px, 1px); }
+  10% { transform: none; opacity: 0.75; }
+  15% { transform: none; opacity: 0.75; }
+  20% { transform: translate(1px, -1px); }
+  25% { transform: none; opacity: 0.75; }
+  100% { transform: none; opacity: 0.75; }
+}
+
+@keyframes glitch-channel-2 {
+  0% { opacity: 0.75; }
+  15% { transform: translate(2px, -1px); }
+  20% { transform: none; opacity: 0.75; }
+  25% { transform: none; opacity: 0.75; }
+  35% { transform: translate(-1px, 1px); }
+  40% { transform: none; opacity: 0.75; }
+  100% { transform: none; opacity: 0.75; }
+}
+
+@layer base {
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+    scroll-behavior: smooth;
+  }
+}
+
+/* Hover Card Effect */
+.hover-card {
+  transition: all 0.3s ease;
+}
+
+.hover-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 240, 255, 0.1);
+}
+
+/* Glass Effect */
+.glass-effect {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Animations */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slideIn {
+  animation: slideIn 0.3s ease forwards;
+}
+
+/* Search Animation */
+@keyframes searchAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.search-appear {
+  animation: searchAppear 0.2s ease forwards;
+}
